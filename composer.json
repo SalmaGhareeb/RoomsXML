@@ -1,0 +1,40 @@
+{
+  "name": "salmahabdelhady/roomsxml",
+  "description": "RoomsXML API integration",
+  "keywords": [
+    "directpay",
+    "3g",
+    "payment",
+    "mobile"
+  ],
+  "homepage": "https://github.com/SalmaAbdelhady/RoomsXML",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Salma Abdelhady",
+      "email": "salmahabdelhady@gmail.com",
+      "homepage": "https://github.com/SalmaAbdelhady",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "kriswallsmith/buzz": "^0.15.0",
+    "jms/serializer": "^1.1"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "~2.3",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-0": {
+      "SalmaAbdelhady\\RoomsXML": "src/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.x-dev"
+    }
+  }
+}
