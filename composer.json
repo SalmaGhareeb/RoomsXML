@@ -2,10 +2,10 @@
   "name": "salmahabdelhady/roomsxml",
   "description": "RoomsXML API integration",
   "keywords": [
-    "directpay",
-    "3g",
-    "payment",
-    "mobile"
+    "roomsxml",
+    "rooms",
+    "hotels",
+    "travel"
   ],
   "homepage": "https://github.com/SalmaAbdelhady/RoomsXML",
   "type": "library",
