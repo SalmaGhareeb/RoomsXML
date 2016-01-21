@@ -33,6 +33,7 @@
       "SalmaAbdelhady\\RoomsXML": "src/"
     }
   },
+  "minimum-stability": "dev",
   "extra": {
     "branch-alias": {
       "dev-master": "1.x-dev"
