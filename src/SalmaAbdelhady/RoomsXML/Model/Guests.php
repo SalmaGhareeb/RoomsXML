@@ -9,11 +9,13 @@
 namespace SalmaAbdelhady\RoomsXML\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 use JMS\Serializer\Annotation\XmlRoot;
-use JMS\Serializer\Tests\Fixtures\Person;
+
 
 /**
  * Class Guests
@@ -24,17 +26,17 @@ class Guests
 {
     /**
      * @var
-     * @SerializedName(name="Adult")
      * @XmlList(inline=true,entry="Adult")
-     * @Type(name="ArrayCollection<SalmaAbdelhady\RoomsXML\Model\Person>")
+     * @XmlElement(cdata=false)
+     * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\Person>")
+     * @SerializedName("Adult")
      */
     private $Adults;
 
     /**
      * @var
-     * @SerializedName(name="Adult")
      * @XmlList(inline=true,entry="Adult")
-     * @Type(name="ArrayCollection<SalmaAbdelhady\RoomsXML\Model\Person>")
+     * @Type(name="ArrayCollection<'SalmaAbdelhady\RoomsXML\Model\Person'>")
      */
     private $Children;
 

@@ -6,6 +6,7 @@ namespace SalmaAbdelhady\RoomsXML\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 use JMS\Serializer\Annotation\XmlRoot;
 
@@ -19,34 +20,37 @@ use JMS\Serializer\Annotation\XmlRoot;
 class HotelStayDetails
 {
     /**
-     * @var
-     * @SerializedName(name="ArrivalDate")
-     * @Type(name="DateTime<YY-MM-d>")
+     * @XmlElement(cdata=false)
+     * @SerializedName("ArrivalDate")
+     * @Type(name="DateTime<'Y-m-d'>")
      */
     private $ArrivalDate;
 
     /**
-     * @var
+     * @XmlElement(cdata=false)
      * @Type(name="integer")
-     * @SerializedName(name="Nights")
+     * @SerializedName("Nights")
      */
     private $Nights;
     /**
-     * @var
+     * @XmlElement(cdata=false)
      * @Type(name="string")
-     * @SerializedName(name="Nationality")
+     * @SerializedName("Nationality")
      *
      */
     private $Nationality;
 
     /**
-     * @var
-     * @Type(name="ArrayCollection<SalmaAbdelhady/RoomsXML/Model/Room>")
-     * @SerializedName(name="Room")
-     * @XmlList(inline=true,entry="Room")
+     * @XmlElement(cdata=false)
+     * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\Room>")
+     * @XmlList(inline = true, entry = "Room")
+     * @SerializedName("Room")
      */
     private $Rooms;
 
+    /**
+     * HotelStayDetails constructor.
+     */
     public function __construct()
     {
         $this->Rooms = new ArrayCollection();

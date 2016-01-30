@@ -9,7 +9,12 @@
 namespace SalmaAbdelhady\RoomsXML;
 
 
+use Buzz\Browser;
 use Buzz\Client\Curl;
+use Buzz\Message\Response;
+use JMS\Serializer\SerializerBuilder;
+use SalmaAbdelhady\RoomsXML\Model\Error;
+
 
 /**
  * Class RoomsXMLRequest
@@ -19,13 +24,26 @@ class RoomsXMLRequest
 {
     protected $config;
     protected $apiURL;
+    protected $auth;
+
+    public $operationData;
+
 
     /**
      * @param $config
      */
     public function __construct($config)
     {
-        $this->config = $config;
+        $this->auth = new RoomsXMLAuthentication();
+
+        $this->auth->setCurrency($config['currency']);
+        $this->auth->setOrg($config['org']);
+        $this->auth->setTestMode($config['test']);
+        $this->auth->setUserName($config['username']);
+        $this->auth->setPassword($config['password']);
+        $this->auth->setVersion($config['api_version']);
+        $this->auth->setLanguage($config['lang']);
+        $this->apiURL = $config['api_url'];
     }
 
 
@@ -34,8 +52,28 @@ class RoomsXMLRequest
      * @return string
      * @throws RoomsXMLException
      */
-    public function sendRequest($payload)
+    public function sendRequest()
     {
+        $serializer = SerializerBuilder::create()->build();
+        $data       = $serializer->serialize($this->operationData, 'xml');
+        $cURL       = $this->initCurl($data);
+        $browser    = new Browser($cURL);
+        $response   = $browser->post($this->apiURL);
+        $this->verifyResponse($response);
+
+        return $response->getContent();
+    }
+
+    /**
+     * @return array
+     */
+    public function getResponse($content, $model)
+    {
+        $serializer = SerializerBuilder::create()->build();
+        $response   = $serializer->deserialize($content, $model, 'xml');
+        $result     = new RoomsXMLResponse($response);
+
+        return $result->getResponse();
     }
 
 
@@ -52,12 +90,28 @@ class RoomsXMLRequest
         $ch->setOption(CURLOPT_SSL_VERIFYHOST, 0); //ssl stuff
         $ch->setOption(CURLOPT_SSL_VERIFYPEER, 0);
         $ch->setOption(CURLOPT_POST, 1);
-        $ch->setOption(CURLOPT_HTTPHEADER, array('Content-Type:  application/x-www-form-urlencoded'));
+        $ch->setOption(CURLOPT_HTTPHEADER, array('Content-Type:  text/xml'));
         $ch->setOption(CURLOPT_POSTFIELDS, $postData);
         $ch->setOption(CURLOPT_RETURNTRANSFER, 1);
         $ch->setTimeout(30);
 
         return $ch;
+    }
+
+    /**
+     * @param Response $response
+     * @throws RoomsXMLException
+     */
+    private function verifyResponse(Response $response)
+    {
+        if ($response->getContent()) {
+            $serializer = SerializerBuilder::create()->build();
+            /** @var Error $error */
+            $error = $serializer->deserialize($response->getContent(), 'SalmaAbdelhady\RoomsXML\Model\Error', 'xml');
+            if ($error->getCode()) {
+                throw new RoomsXMLException($error->getDescription(), $error->getCode());
+            }
+        }
     }
 
 

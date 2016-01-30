@@ -11,6 +11,7 @@ namespace SalmaAbdelhady\RoomsXML;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlRoot;
 
 /**
@@ -18,26 +19,29 @@ use JMS\Serializer\Annotation\XmlRoot;
  * @package SalmaAbdelhady\RoomsXML
  * @XmlRoot(name="Authority")
  */
-class RoomsXMLAuthentication extends RoomsXMLResponse
+class RoomsXMLAuthentication
 {
 
     /**
      * @var
      * @Type(name="string")
-     * @SerializedName(name="Org")
+     * @SerializedName("Org")
+     * @XmlElement(cdata=false)
      */
     private $Org;
 
     /**
      * @var
+     * @XmlElement(cdata=false)
      * @Type(name="string")
-     * @SerializedName(name="User")
+     * @SerializedName("User")
      */
     private $userName;
 
     /**
      * @var
-     * @SerializedName(name="Password")
+     * @XmlElement(cdata=false)
+     * @SerializedName("Password")
      * @Type(name="string")
      */
     private $password;
@@ -45,37 +49,43 @@ class RoomsXMLAuthentication extends RoomsXMLResponse
     /**
      * @var
      * @Type(name="string")
-     * @SerializedName(name="Language")
+     * @SerializedName("Language")
+     * @XmlElement(cdata=false)
      */
     private $language;
     /**
      * @var
      * @Type(name="string")
-     * @SerializedName(name="Currency")
+     * @SerializedName("Currency")
+     * @XmlElement(cdata=false)
      */
     private $currency;
     /**
      * @var
+     * @XmlElement(cdata=false)
      * @Type(name="string")
-     * @SerializedName(name="DebugMode")
+     * @SerializedName("DebugMode")
      */
     private $debugMode;
     /**
      * @var
+     * @XmlElement(cdata=false)
      * @Type(name="string")
-     * @SerializedName(name="TestMode")
+     * @SerializedName("TestMode")
      */
     private $testMode;
     /**
      * @var
+     * @XmlElement(cdata=false)
      * @Type(name="string")
-     * @SerializedName(name="Timeout")
+     * @SerializedName("Timeout")
      */
     private $timeOut;
     /**
      * @var
+     * @XmlElement(cdata=false)
      * @Type(name="string")
-     * @SerializedName(name="Version")
+     * @SerializedName("Version")
      */
     private $version;
 

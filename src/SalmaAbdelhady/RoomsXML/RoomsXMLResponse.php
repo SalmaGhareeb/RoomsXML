@@ -13,8 +13,30 @@ namespace SalmaAbdelhady\RoomsXML;
  * Class RoomsXMLResponse
  * @package SalmaAbdelhady\RoomsXML
  */
-class RoomsXMLResponse
+class RoomsXMLResponse extends \ArrayObject
 {
+    /**
+     * @return array
+     */
+    public function getArrayCopy()
+    {
+        $resultArray = parent::getArrayCopy();
+        foreach ($resultArray as $key => $val) {
+            if (!is_object($val)) {
+                continue;
+            }
+            $o                 = new RoomsXMLResponse($val);
+            $resultArray[$key] = $o->getArrayCopy();
+        }
+
+        return $resultArray;
+    }
 
 
+    public function getResponse()
+    {
+        $this->getArrayCopy();
+
+        return array_values($this->getArrayCopy());
+    }
 }

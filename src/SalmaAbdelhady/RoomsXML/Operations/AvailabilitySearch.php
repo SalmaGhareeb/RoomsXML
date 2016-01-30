@@ -12,79 +12,127 @@ namespace SalmaAbdelhady\RoomsXML\Operations;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlRoot;
+use SalmaAbdelhady\RoomsXML\Model\Guests;
+use SalmaAbdelhady\RoomsXML\Model\HotelStayDetails;
+use SalmaAbdelhady\RoomsXML\Model\Person;
+use SalmaAbdelhady\RoomsXML\Model\Room;
+use SalmaAbdelhady\RoomsXML\RoomsXMLAuthentication;
+use SalmaAbdelhady\RoomsXML\RoomsXMLRequest;
 
 /**
  * Class AvailabilitySearch
  * @package SalmaAbdelhady\RoomsXML\Operations
  * @XmlRoot(name="AvailabilitySearch")
  */
-class AvailabilitySearch
+class AvailabilitySearch extends RoomsXMLRequest
 {
+
     /**
-     * @var
+     * @XmlElement(cdata=false)
      * @Type(name="SalmaAbdelhady\RoomsXML\RoomsXMLAuthentication")
+     * @SerializedName("Authority")
      */
     private $authority;
 
     /**
-     * @var
+     * @XmlElement(cdata=false)
      * @Type(name="SalmaAbdelhady\RoomsXML\Model\HotelStayDetails")
-     * @SerializedName(name="HotelStayDetails")
+     * @SerializedName("HotelStayDetails")
      */
     private $hotelStayDetails;
 
     /**
-     * @var
+     * @XmlElement(cdata=false)
      * @Type(name="SalmaAbdelhady\RoomsXML\Model\HotelSearchCriteria")
-     * @SerializedName(name="HotelSearchCriteria")
+     * @SerializedName("HotelSearchCriteria")
      */
     private $hotelSearchCriteria;
 
     /**
-     * @var
-     * @SerializedName(name="RegionId")
+     * @XmlElement(cdata=false)
+     * @SerializedName("RegionId")
      * @Type(name="integer")
      */
     private $RegionId;
 
     /**
-     * @var
-     * @SerializedName(name="HotelId")
+     * @XmlElement(cdata=false)
+     * @SerializedName("HotelId")
      * @Type(name="integer")
      */
     private $HotelId;
 
     /**
-     * @var
-     * @SerializedName(name="CustomDetailLevel")
+     * @XmlElement(cdata=false)
+     * @SerializedName("CustomDetailLevel")
      * @Type(name="string")
      */
     private $CustomDetailLevel;
 
     /**
-     * @var
-     * @SerializedName(name="MaxResultsPerHotel")
+     * @XmlElement(cdata=false)
+     * @SerializedName("MaxResultsPerHotel")
      * @Type(name="integer")
      */
     private $MaxResultsPerHotel;
 
     /**
-     * @var
-     * @SerializedName(name="MaxHotels")
+     * @XmlElement(cdata=false)
+     * @SerializedName("MaxHotels")
      * @Type(name="integer")
      */
     private $MaxHotels;
 
     /**
-     * @var
-     * @SerializedName(name="MaxSearchTime")
+     * @XmlElement(cdata=false)
+     * @SerializedName("MaxSearchTime")
      * @Type(name="integer")
      */
     private $MaxSearchTime;
 
     /**
+     * @param $payLoad
+     * @return array
+     */
+    public function checkAvailability($payLoad)
+    {
+        $hotelDetails = new HotelStayDetails();
+        $hotelDetails->setArrivalDate(new \DateTime($payLoad['arrivalDate']));
+        $hotelDetails->setNationality($payLoad['nationality']);
+        $hotelDetails->setNights($payLoad['nights']);
+        foreach ($payLoad['rooms'] as $room) {
+            $hotelRoom = new Room();
+            $guests    = new Guests();
+            foreach ($room['guests'] as $guest) {
+                if ($guest['type'] == 'Adult') {
+                    $guests->addAdult(new Person());
+                } elseif ($guest['type'] == 'Child') {
+                    $guests->addChild(new Person());
+                }
+            }
+            $hotelRoom->setGuests($guests);
+            $hotelDetails->addRoom($hotelRoom);
+        }
+        if (isset($payLoad['regionId'])) {
+            $this->setRegionId($payLoad['regionId']);
+        }
+        if (isset($payLoad['hotelId'])) {
+            $this->setHotelId($payLoad['hotelId']);
+        }
+        $this->setAuthority($this->auth);
+        $this->setHotelStayDetails($hotelDetails);
+
+        $this->operationData = $this;
+        $content             = $this->sendRequest();
+
+        return $this->getResponse($content, 'SalmaAbdelhady\RoomsXML\Results\AvailabilitySearchResult');
+    }
+
+    /**
      * @return mixed
+     *
      */
     public function getAuthority()
     {
@@ -94,7 +142,7 @@ class AvailabilitySearch
     /**
      * @param mixed $authority
      */
-    public function setAuthority($authority)
+    public function setAuthority(RoomsXMLAuthentication $authority)
     {
         $this->authority = $authority;
     }
