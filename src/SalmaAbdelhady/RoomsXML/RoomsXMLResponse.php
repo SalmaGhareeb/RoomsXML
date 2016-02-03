@@ -21,12 +21,14 @@ class RoomsXMLResponse extends \ArrayObject
     public function getArrayCopy()
     {
         $resultArray = parent::getArrayCopy();
+
         foreach ($resultArray as $key => $val) {
             if (!is_object($val)) {
                 continue;
             }
-            $o                 = new RoomsXMLResponse($val);
-            $resultArray[$key] = $o->getArrayCopy();
+
+            $object            = new RoomsXMLResponse($val);
+            $resultArray[$key] = $object->getArrayCopy();
         }
 
         return $resultArray;

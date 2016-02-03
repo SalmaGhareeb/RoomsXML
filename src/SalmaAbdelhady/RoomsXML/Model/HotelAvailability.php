@@ -54,4 +54,22 @@ class HotelAvailability
         $this->hotel = $hotel;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getResults()
+    {
+        return $this->results;
+    }
+
+    /**
+     * @param mixed $results
+     */
+    public function setResults($results)
+    {
+        $this->results = $results;
+    }
+
+
+
 }

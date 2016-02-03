@@ -36,7 +36,7 @@ class Hotel
      * @SerializedName("name")
      * @XmlAttribute()
      */
-    private $name;
+    private $Name;
 
 
     /**
@@ -60,15 +60,15 @@ class Hotel
      */
     public function getName()
     {
-        return $this->name;
+        return $this->Name;
     }
 
     /**
-     * @param mixed $name
+     * @param mixed $Name
      */
-    public function setName($name)
+    public function setName($Name)
     {
-        $this->name = $name;
+        $this->Name = $Name;
     }
 
 

@@ -71,9 +71,9 @@ class RoomsXMLRequest
     {
         $serializer = SerializerBuilder::create()->build();
         $response   = $serializer->deserialize($content, $model, 'xml');
-        $result     = new RoomsXMLResponse($response);
 
-        return $result->getResponse();
+
+        return $response;
     }
 
 
@@ -88,7 +88,7 @@ class RoomsXMLRequest
         $ch->setOption(CURLOPT_HEADER, 1);
         $ch->setOption(CURLOPT_VERBOSE, 0);
         $ch->setOption(CURLOPT_SSL_VERIFYHOST, 0); //ssl stuff
-        $ch->setOption(CURLOPT_SSL_VERIFYPEER, 0);
+        $ch->setOption(CURLOPT_SSL_VERIFYPEER, 1);
         $ch->setOption(CURLOPT_POST, 1);
         $ch->setOption(CURLOPT_HTTPHEADER, array('Content-Type:  text/xml'));
         $ch->setOption(CURLOPT_POSTFIELDS, $postData);
