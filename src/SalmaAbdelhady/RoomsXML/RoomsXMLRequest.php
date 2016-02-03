@@ -93,7 +93,7 @@ class RoomsXMLRequest
         $ch->setOption(CURLOPT_HTTPHEADER, array('Content-Type:  text/xml'));
         $ch->setOption(CURLOPT_POSTFIELDS, $postData);
         $ch->setOption(CURLOPT_RETURNTRANSFER, 1);
-        $ch->setTimeout(30);
+        $ch->setTimeout(60);
 
         return $ch;
     }

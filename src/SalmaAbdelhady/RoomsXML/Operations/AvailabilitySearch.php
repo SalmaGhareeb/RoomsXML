@@ -123,7 +123,8 @@ class AvailabilitySearch extends RoomsXMLRequest
         }
         $this->setAuthority($this->auth);
         $this->setHotelStayDetails($hotelDetails);
-
+        $this->setMaxHotels(50);
+        $this->setMaxSearchTime(60);
         $this->operationData = $this;
         $content             = $this->sendRequest();
 
