@@ -36,7 +36,7 @@ class Hotel
      * @SerializedName("name")
      * @XmlAttribute()
      */
-    private $Name;
+    protected $Name;
 
 
     /**

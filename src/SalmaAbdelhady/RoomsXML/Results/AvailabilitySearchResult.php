@@ -14,26 +14,15 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 use JMS\Serializer\Annotation\XmlRoot;
+use SalmaAbdelhady\RoomsXML\RoomsXMLResponse;
 
 /**
  * Class AvailabilitySearchResult
  * @XmlRoot(name="AvailabilitySearchResult")
  */
-class AvailabilitySearchResult
+class AvailabilitySearchResult  extends RoomsXMLResponse
 {
-    /**
-     * @var
-     * @SerializedName("Currency")
-     * @Type(name="string")
-     */
-    private $currency;
 
-    /**
-     * @var
-     * @SerializedName("TestMode")
-     * @Type(name="string")
-     */
-    private $TestMode;
 
     /**
      * @XmlList(inline=true,entry="HotelAvailability")
@@ -41,39 +30,8 @@ class AvailabilitySearchResult
      * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\HotelAvailability>")
      * @SerializedName("HotelAvailability")
      */
-    private $hotelAvailability;
+    protected $hotelAvailability;
 
-    /**
-     * @return mixed
-     */
-    public function getCurrency()
-    {
-        return $this->currency;
-    }
-
-    /**
-     * @param mixed $currency
-     */
-    public function setCurrency($currency)
-    {
-        $this->currency = $currency;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTestMode()
-    {
-        return $this->TestMode;
-    }
-
-    /**
-     * @param mixed $TestMode
-     */
-    public function setTestMode($TestMode)
-    {
-        $this->TestMode = $TestMode;
-    }
 
     /**
      * @return mixed

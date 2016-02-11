@@ -7,6 +7,8 @@
  */
 
 namespace SalmaAbdelhady\RoomsXML;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
 
 
 /**
@@ -15,6 +17,21 @@ namespace SalmaAbdelhady\RoomsXML;
  */
 class RoomsXMLResponse extends \ArrayObject
 {
+
+    /**
+     * @var
+     * @SerializedName("Currency")
+     * @Type(name="string")
+     */
+    protected $currency;
+
+    /**
+     * @var
+     * @SerializedName("TestMode")
+     * @Type(name="string")
+     */
+    protected $TestMode;
+
     /**
      * @return array
      */
@@ -41,4 +58,40 @@ class RoomsXMLResponse extends \ArrayObject
 
         return array_values($this->getArrayCopy());
     }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param mixed $currency
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTestMode()
+    {
+        return $this->TestMode;
+    }
+
+    /**
+     * @param mixed $TestMode
+     */
+    public function setTestMode($TestMode)
+    {
+        $this->TestMode = $TestMode;
+    }
+
+
 }

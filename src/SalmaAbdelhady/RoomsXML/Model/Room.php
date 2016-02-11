@@ -10,6 +10,8 @@ namespace SalmaAbdelhady\RoomsXML\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
+use JMS\Serializer\Annotation\XmlList;
 use JMS\Serializer\Annotation\XmlRoot;
 
 /**
@@ -46,6 +48,24 @@ class Room
      * @SerializedName("Price")
      */
     private $price;
+
+
+    /**
+     * @var
+     * @SerializedName("TotalSellingPrice")
+     * @Type(name="SalmaAbdelhady\RoomsXML\Model\TotalSellingPrice")
+     */
+    protected $TotalSellingPrice;
+
+
+    /**
+     * @var
+     * @XmlList(inline=true,entry="Message")
+     * @XmlElement(cdata=false)
+     * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\Message>")
+     * @SerializedName("Messages")
+     */
+    private $Messages;
 
     /**
      * @return mixed
@@ -110,5 +130,39 @@ class Room
     {
         $this->price = $price;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTotalSellingPrice()
+    {
+        return $this->TotalSellingPrice;
+    }
+
+    /**
+     * @param mixed $TotalSellingPrice
+     */
+    public function setTotalSellingPrice($TotalSellingPrice)
+    {
+        $this->TotalSellingPrice = $TotalSellingPrice;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMessages()
+    {
+        return $this->Messages;
+    }
+
+    /**
+     * @param mixed $Messages
+     */
+    public function setMessages($Messages)
+    {
+        $this->Messages = $Messages;
+    }
+
+
 
 }

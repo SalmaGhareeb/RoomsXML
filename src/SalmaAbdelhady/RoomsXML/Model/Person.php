@@ -9,6 +9,7 @@
 namespace SalmaAbdelhady\RoomsXML\Model;
 
 
+use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlAttribute;
 
@@ -18,6 +19,12 @@ use JMS\Serializer\Annotation\XmlAttribute;
  */
 class Person
 {
+    /**
+     * @var
+     * @Type(name="integer")
+     * @XmlAttribute()
+     */
+    private $id;
 
     /**
      * @var
@@ -25,6 +32,7 @@ class Person
      * @XmlAttribute()
      */
     private $title;
+
     /**
      * @var
      * @Type(name="string")
@@ -37,6 +45,21 @@ class Person
      * @XmlAttribute()
      */
     private $last;
+
+
+    /**
+     * @var
+     * @Type(name="SalmaAbdelhady\RoomsXML\Model\Price")
+     * @SerializedName("Price")
+     */
+    private $price;
+
+    /**
+     * @var
+     * @XmlAttribute()
+     * @Type(name="integer")
+     */
+    private $age;
 
     /**
      * @return mixed
@@ -85,4 +108,54 @@ class Person
     {
         $this->last = $last;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    /**
+     * @param mixed $age
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
+    }
+
+
 }

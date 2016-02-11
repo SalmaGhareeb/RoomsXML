@@ -18,7 +18,6 @@ use SalmaAbdelhady\RoomsXML\Model\Guests;
 use SalmaAbdelhady\RoomsXML\Model\HotelStayDetails;
 use SalmaAbdelhady\RoomsXML\Model\Person;
 use SalmaAbdelhady\RoomsXML\Model\Room;
-use SalmaAbdelhady\RoomsXML\RoomsXMLAuthentication;
 use SalmaAbdelhady\RoomsXML\RoomsXMLRequest;
 
 /**
@@ -29,19 +28,6 @@ use SalmaAbdelhady\RoomsXML\RoomsXMLRequest;
 class AvailabilitySearch extends RoomsXMLRequest
 {
 
-    /**
-     * @XmlElement(cdata=false)
-     * @Type(name="SalmaAbdelhady\RoomsXML\RoomsXMLAuthentication")
-     * @SerializedName("Authority")
-     */
-    private $authority;
-
-    /**
-     * @XmlElement(cdata=false)
-     * @Type(name="SalmaAbdelhady\RoomsXML\Model\HotelStayDetails")
-     * @SerializedName("HotelStayDetails")
-     */
-    private $hotelStayDetails;
 
     /**
      * @XmlElement(cdata=false)
@@ -105,13 +91,16 @@ class AvailabilitySearch extends RoomsXMLRequest
         foreach ($payLoad['rooms'] as $room) {
             $hotelRoom = new Room();
             $guests    = new Guests();
-            foreach ($room['guests'] as $guest) {
-                if ($guest['type'] == 'Adult') {
-                    $guests->addAdult(new Person());
-                } elseif ($guest['type'] == 'Child') {
-                    $guests->addChild(new Person());
-                }
+
+            for ($i = 0; $i < $room['adult']; $i++) {
+                $guests->addAdult(new Person());
             }
+            for ($i = 0; $i < $room['child']; $i++) {
+                $ch = new Person();
+                $ch->setAge(12);
+                $guests->addChild($ch);
+            }
+
             $hotelRoom->setGuests($guests);
             $hotelDetails->addRoom($hotelRoom);
         }
@@ -123,45 +112,11 @@ class AvailabilitySearch extends RoomsXMLRequest
         }
         $this->setAuthority($this->auth);
         $this->setHotelStayDetails($hotelDetails);
-        $this->setMaxHotels(50);
         $this->setMaxSearchTime(60);
         $this->operationData = $this;
         $content             = $this->sendRequest();
 
         return $this->getResponse($content, 'SalmaAbdelhady\RoomsXML\Results\AvailabilitySearchResult');
-    }
-
-    /**
-     * @return mixed
-     *
-     */
-    public function getAuthority()
-    {
-        return $this->authority;
-    }
-
-    /**
-     * @param mixed $authority
-     */
-    public function setAuthority(RoomsXMLAuthentication $authority)
-    {
-        $this->authority = $authority;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getHotelStayDetails()
-    {
-        return $this->hotelStayDetails;
-    }
-
-    /**
-     * @param mixed $hotelStayDetails
-     */
-    public function setHotelStayDetails($hotelStayDetails)
-    {
-        $this->hotelStayDetails = $hotelStayDetails;
     }
 
     /**

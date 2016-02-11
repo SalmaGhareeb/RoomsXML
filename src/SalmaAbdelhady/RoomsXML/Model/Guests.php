@@ -27,16 +27,16 @@ class Guests
     /**
      * @var
      * @XmlList(inline=true,entry="Adult")
-     * @XmlElement(cdata=false)
-     * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\Person>")
+     * @Type(name="ArrayCollection<SalmaAbdelhady\RoomsXML\Model\Person>")
      * @SerializedName("Adult")
      */
     private $Adults;
 
     /**
      * @var
-     * @XmlList(inline=true,entry="Adult")
+     * @XmlList(inline=true,entry="Child")
      * @Type(name="ArrayCollection<'SalmaAbdelhady\RoomsXML\Model\Person'>")
+     * @SerializedName("Child")
      */
     private $Children;
 

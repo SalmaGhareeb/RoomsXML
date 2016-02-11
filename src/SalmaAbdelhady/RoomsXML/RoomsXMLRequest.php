@@ -12,6 +12,9 @@ namespace SalmaAbdelhady\RoomsXML;
 use Buzz\Browser;
 use Buzz\Client\Curl;
 use Buzz\Message\Response;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\SerializerBuilder;
 use SalmaAbdelhady\RoomsXML\Model\Error;
 
@@ -27,6 +30,21 @@ class RoomsXMLRequest
     protected $auth;
 
     public $operationData;
+
+
+    /**
+     * @XmlElement(cdata=false)
+     * @Type(name="SalmaAbdelhady\RoomsXML\Model\HotelStayDetails")
+     * @SerializedName("HotelStayDetails")
+     */
+    public $hotelStayDetails;
+
+    /**
+     * @XmlElement(cdata=false)
+     * @Type(name="SalmaAbdelhady\RoomsXML\RoomsXMLAuthentication")
+     * @SerializedName("Authority")
+     */
+    public $authority;
 
 
     /**
@@ -56,6 +74,7 @@ class RoomsXMLRequest
     {
         $serializer = SerializerBuilder::create()->build();
         $data       = $serializer->serialize($this->operationData, 'xml');
+
         $cURL       = $this->initCurl($data);
         $browser    = new Browser($cURL);
         $response   = $browser->post($this->apiURL);
@@ -88,11 +107,12 @@ class RoomsXMLRequest
         $ch->setOption(CURLOPT_HEADER, 1);
         $ch->setOption(CURLOPT_VERBOSE, 0);
         $ch->setOption(CURLOPT_SSL_VERIFYHOST, 0); //ssl stuff
-        $ch->setOption(CURLOPT_SSL_VERIFYPEER, 0);
+        $ch->setOption(CURLOPT_SSL_VERIFYPEER, 1);
         $ch->setOption(CURLOPT_POST, 1);
         $ch->setOption(CURLOPT_HTTPHEADER, array('Content-Type:  text/xml'));
         $ch->setOption(CURLOPT_POSTFIELDS, $postData);
         $ch->setOption(CURLOPT_RETURNTRANSFER, 1);
+//        $ch->setOption(CURLOPT_HTTPHEADER, array("Content-Length: " . strlen($postData)));
         $ch->setTimeout(60);
 
         return $ch;
@@ -112,6 +132,38 @@ class RoomsXMLRequest
                 throw new RoomsXMLException($error->getDescription(), $error->getCode());
             }
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHotelStayDetails()
+    {
+        return $this->hotelStayDetails;
+    }
+
+    /**
+     * @param mixed $hotelStayDetails
+     */
+    public function setHotelStayDetails($hotelStayDetails)
+    {
+        $this->hotelStayDetails = $hotelStayDetails;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAuthority()
+    {
+        return $this->authority;
+    }
+
+    /**
+     * @param mixed $authority
+     */
+    public function setAuthority($authority)
+    {
+        $this->authority = $authority;
     }
 
 

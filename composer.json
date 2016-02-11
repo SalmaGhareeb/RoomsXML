@@ -31,6 +31,10 @@
   "autoload": {
     "psr-0": {
       "SalmaAbdelhady\\RoomsXML": "src/"
+    },
+    "psr-4":
+    {
+      "SalmaAbdelhady\\RoomsXML" : "src/"
     }
   },
   "minimum-stability": "dev",

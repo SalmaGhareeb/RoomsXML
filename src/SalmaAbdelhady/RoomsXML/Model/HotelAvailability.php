@@ -26,7 +26,7 @@ class HotelAvailability
      * @SerializedName("Hotel")
      * @Type(name="SalmaAbdelhady\RoomsXML\Model\Hotel")
      */
-    private $hotel;
+    protected $hotel;
 
     /**
      * @var
@@ -35,7 +35,7 @@ class HotelAvailability
      * @XmlList(inline = true, entry = "Result")
      * @SerializedName("Result")
      */
-    private $results;
+    protected $results;
 
 
     /**
@@ -69,7 +69,6 @@ class HotelAvailability
     {
         $this->results = $results;
     }
-
 
 
 }
