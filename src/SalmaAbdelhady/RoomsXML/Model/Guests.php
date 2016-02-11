@@ -9,7 +9,6 @@
 namespace SalmaAbdelhady\RoomsXML\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
@@ -27,7 +26,8 @@ class Guests
     /**
      * @var
      * @XmlList(inline=true,entry="Adult")
-     * @Type(name="ArrayCollection<SalmaAbdelhady\RoomsXML\Model\Person>")
+     * @XmlElement(cdata=false)
+     * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\Person>")
      * @SerializedName("Adult")
      */
     private $Adults;
@@ -35,7 +35,8 @@ class Guests
     /**
      * @var
      * @XmlList(inline=true,entry="Child")
-     * @Type(name="ArrayCollection<'SalmaAbdelhady\RoomsXML\Model\Person'>")
+     * @XmlElement(cdata=false)
+     * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\Person>")
      * @SerializedName("Child")
      */
     private $Children;
