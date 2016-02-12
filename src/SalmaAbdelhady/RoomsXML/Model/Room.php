@@ -33,21 +33,21 @@ class Room
      * @Type(name="SalmaAbdelhady\RoomsXML\Model\RoomType")
      * @SerializedName("RoomType")
      */
-    private $roomType;
+    protected $roomType;
 
     /**
      * @var
      * @Type(name="SalmaAbdelhady\RoomsXML\Model\MealType")
      * @SerializedName("MealType")
      */
-    private $mealType;
+    protected $mealType;
 
     /**
      * @var
      * @Type(name="SalmaAbdelhady\RoomsXML\Model\Price")
      * @SerializedName("Price")
      */
-    private $price;
+    protected $price;
 
 
     /**
@@ -60,12 +60,27 @@ class Room
 
     /**
      * @var
-     * @XmlList(inline=true,entry="Message")
-     * @XmlElement(cdata=false)
-     * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\Message>")
+     * @Type(name="SalmaAbdelhady\RoomsXML\Model\Messages")
      * @SerializedName("Messages")
      */
-    private $Messages;
+    protected $messages;
+
+    /**
+     * @var
+     * @XmlList(inline=true,entry="NightCost")
+     * @XmlElement(cdata=false)
+     * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\NightCost>")
+     * @SerializedName("NightCost")
+     */
+    private $NightCost;
+
+    /**
+     * @var
+     * @Type(name="SalmaAbdelhady\RoomsXML\Model\CancellationFees")
+     * @SerializedName("CanxFees")
+     */
+    private $cancellationFees;
+
 
     /**
      * @return mixed
@@ -163,6 +178,35 @@ class Room
         $this->Messages = $Messages;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getNightCost()
+    {
+        return $this->NightCost;
+    }
 
+    /**
+     * @param mixed $NightCost
+     */
+    public function setNightCost($NightCost)
+    {
+        $this->NightCost = $NightCost;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getCancellationFees()
+    {
+        return $this->cancellationFees;
+    }
+
+    /**
+     * @param mixed $cancellationFees
+     */
+    public function setCancellationFees($cancellationFees)
+    {
+        $this->cancellationFees = $cancellationFees;
+    }
 }

@@ -21,6 +21,13 @@ class HotelBooking
 {
 
     /**
+     * @Type(name="SalmaAbdelhady\RoomsXML\Model\Room")
+     * @SerializedName("Room")
+     */
+    private $Room;
+
+
+    /**
      * @var
      * @SerializedName("HotelId")
      * @Type(name="integer")
@@ -79,10 +86,10 @@ class HotelBooking
 
     /**
      * @var
-     * @SerializedName("Room")
-     * @Type(name="SalmaAbdelhady\RoomsXML\Model\Room")
+     * @Type(name="SalmaAbdelhady\RoomsXML\Model\VoucherInfo")
+     * @SerializedName("VoucherInfo")
      */
-    private $room;
+    private $VoucherInfo;
 
 
     /**
@@ -214,8 +221,36 @@ class HotelBooking
         $this->Nights = $Nights;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRoom()
+    {
+        return $this->Room;
+    }
 
+    /**
+     * @param mixed $Room
+     */
+    public function setRoom($Room)
+    {
+        $this->Room = $Room;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getVoucherInfo()
+    {
+        return $this->VoucherInfo;
+    }
 
+    /**
+     * @param mixed $VoucherInfo
+     */
+    public function setVoucherInfo($VoucherInfo)
+    {
+        $this->VoucherInfo = $VoucherInfo;
+    }
 
 }

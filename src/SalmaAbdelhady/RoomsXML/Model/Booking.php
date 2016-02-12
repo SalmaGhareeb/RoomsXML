@@ -11,6 +11,8 @@ namespace SalmaAbdelhady\RoomsXML\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
+use JMS\Serializer\Annotation\XmlList;
 use JMS\Serializer\Annotation\XmlRoot;
 
 /**
@@ -33,9 +35,6 @@ class Booking
      * @SerializedName("HotelBooking")
      */
     protected $HotelBooking;
-
-
-
 
     /**
      * @return mixed
@@ -68,7 +67,5 @@ class Booking
     {
         $this->HotelBooking = $HotelBooking;
     }
-
-
 
 }

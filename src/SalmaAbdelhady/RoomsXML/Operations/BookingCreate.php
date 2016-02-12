@@ -55,32 +55,32 @@ class BookingCreate extends RoomsXMLRequest
     {
         $hotelDetails = new HotelStayDetails();
         $hotelDetails->setNationality($payLoad['nationality']);
-        foreach ($payLoad['rooms'] as $room) {
+        foreach ($payLoad['rooms'] as $roomId => $room) {
             $hotelRoom = new Room();
             $guests    = new Guests();
-            foreach ($room['guests'] as $guest) {
-                if ($guest['type'] == 'Adult') {
-                    $adult = new Person();
-                    $adult->setFirst('Salma');
-                    $adult->setTitle("Mr.");
-                    $adult->setLast("Khaled");
-                    $guests->addAdult($adult);
-                } elseif ($guest['type'] == 'Child') {
-                    $guests->addChild(new Person());
+
+            foreach ($payLoad['guests'] as $gKey =>  $guest) {
+                if($guest['room'] == $roomId){
+                    $g = new Person();
+                    $g->setAge($guest['age']);
+                    $g->setTitle($guest['title']);
+                    $g->setFirst($guest['first']);
+                    $g->setLast($guest['last']);
+                    $addFunc = "add".ucfirst($guest['type']);
+                    $guests->$addFunc($g);
                 }
             }
             $hotelRoom->setGuests($guests);
             $hotelDetails->addRoom($hotelRoom);
         }
 
-        $this->setQuoteId("15252857-22");
-        $this->setCommitLevel("prepare");
+        $this->setQuoteId($payLoad['quoteId']);
+        $this->setCommitLevel($payLoad['commitLevel']);
         $this->setAuthority($this->auth);
         $this->setHotelStayDetails($hotelDetails);
         $this->operationData = $this;
         $content             = $this->sendRequest();
 
-        (dump($content));
         return $this->getResponse($content, 'SalmaAbdelhady\RoomsXML\Results\BookingCreateResult');
     }
 
@@ -132,10 +132,4 @@ class BookingCreate extends RoomsXMLRequest
     {
         $this->CommitLevel = $CommitLevel;
     }
-
-
-
-
-
-
 }

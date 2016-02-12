@@ -11,7 +11,13 @@ namespace SalmaAbdelhady\RoomsXML\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlRoot;
 
+/**
+ * Class Message
+ * @package SalmaAbdelhady\RoomsXML\Model
+ * @XmlRoot("Message")
+ */
 class Message
 {
 
@@ -20,29 +26,13 @@ class Message
      * @SerializedName("Type")
      * @Type(name="string")
      */
-    private $type;
+    protected $type;
     /**
      * @var
      * @SerializedName("Text")
      * @Type(name="string")
      */
-    private $text;
-
-    /**
-     * @return mixed
-     */
-    public function getText()
-    {
-        return $this->text;
-    }
-
-    /**
-     * @param mixed $text
-     */
-    public function setText($text)
-    {
-        $this->text = $text;
-    }
+    protected $text;
 
     /**
      * @return mixed
@@ -60,6 +50,19 @@ class Message
         $this->type = $type;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
 
-
+    /**
+     * @param mixed $text
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+    }
 }
