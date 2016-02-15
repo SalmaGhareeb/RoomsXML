@@ -19,12 +19,11 @@ use JMS\Serializer\Annotation\XmlRoot;
  */
 class HotelBooking
 {
-
     /**
      * @Type(name="SalmaAbdelhady\RoomsXML\Model\Room")
      * @SerializedName("Room")
      */
-    private $Room;
+    protected $Room;
 
 
     /**
@@ -53,14 +52,14 @@ class HotelBooking
      * @Type(name="DateTime<'Y-m-d'>")
      * @SerializedName("CreationDate")
      */
-    private $CreationDate;
+    protected $CreationDate;
 
     /**
      * @var
      * @Type(name="DateTime<'Y-m-d'>")
      * @SerializedName("ArrivalDate")
      */
-    private $ArrivalDate;
+    protected $ArrivalDate;
 
 
     /**
@@ -89,7 +88,7 @@ class HotelBooking
      * @Type(name="SalmaAbdelhady\RoomsXML\Model\VoucherInfo")
      * @SerializedName("VoucherInfo")
      */
-    private $VoucherInfo;
+    protected $VoucherInfo;
 
 
     /**
@@ -252,5 +251,4 @@ class HotelBooking
     {
         $this->VoucherInfo = $VoucherInfo;
     }
-
 }

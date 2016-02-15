@@ -26,7 +26,7 @@ class Room
      * @Type(name="SalmaAbdelhady\RoomsXML\Model\Guests")
      * @SerializedName("Guests")
      */
-    private $guests;
+    protected $guests;
 
     /**
      * @var
@@ -72,14 +72,14 @@ class Room
      * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\NightCost>")
      * @SerializedName("NightCost")
      */
-    private $NightCost;
+    protected $NightCost;
 
     /**
      * @var
      * @Type(name="SalmaAbdelhady\RoomsXML\Model\CancellationFees")
      * @SerializedName("CanxFees")
      */
-    private $cancellationFees;
+    protected $cancellationFees;
 
 
     /**
@@ -167,16 +167,17 @@ class Room
      */
     public function getMessages()
     {
-        return $this->Messages;
+        return $this->messages;
     }
 
     /**
-     * @param mixed $Messages
+     * @param mixed $messages
      */
-    public function setMessages($Messages)
+    public function setMessages($messages)
     {
-        $this->Messages = $Messages;
+        $this->messages = $messages;
     }
+
 
     /**
      * @return mixed
