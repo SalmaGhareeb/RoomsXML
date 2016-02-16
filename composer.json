@@ -34,7 +34,7 @@
     },
     "psr-4":
     {
-      "SalmaAbdelhady\\RoomsXML" : "src/"
+      "SalmaAbdelhady\\RoomsXML\\" : "src/"
     }
   },
   "minimum-stability": "dev",
