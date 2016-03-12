@@ -30,8 +30,18 @@ class BookingCreate extends RoomsXMLRequest
      * @var
      * @SerializedName("QuoteId")
      * @Type(name="string")
+     * @XmlElement(cdata=false)
      */
     private $QuoteId;
+
+
+    /**
+     * @var
+     * @SerializedName("BookingId")
+     * @Type(name="string")
+     * @XmlElement(cdata=false)
+     */
+    private $BookingId;
 
     /**
      * @var
@@ -43,6 +53,7 @@ class BookingCreate extends RoomsXMLRequest
      * @var
      * @Type(name="string")
      * @SerializedName("CommitLevel")
+     * @XmlElement(cdata=false)
      */
     private $CommitLevel;
 
@@ -59,14 +70,14 @@ class BookingCreate extends RoomsXMLRequest
             $hotelRoom = new Room();
             $guests    = new Guests();
 
-            foreach ($payLoad['guests'] as $gKey =>  $guest) {
-                if($guest['room'] == $roomId){
+            foreach ($payLoad['guests'] as $gKey => $guest) {
+                if ($guest['room'] == $roomId) {
                     $g = new Person();
                     $g->setAge($guest['age']);
                     $g->setTitle($guest['title']);
                     $g->setFirst($guest['first']);
                     $g->setLast($guest['last']);
-                    $addFunc = "add".ucfirst($guest['type']);
+                    $addFunc = "add" . ucfirst($guest['type']);
                     $guests->$addFunc($g);
                 }
             }
@@ -78,6 +89,10 @@ class BookingCreate extends RoomsXMLRequest
         $this->setCommitLevel($payLoad['commitLevel']);
         $this->setAuthority($this->auth);
         $this->setHotelStayDetails($hotelDetails);
+        if (isset($payLoad['bookingId'])) {
+            $this->setBookingId($payLoad['bookingId']);
+        }
+
         $this->operationData = $this;
         $content             = $this->sendRequest();
 
@@ -132,4 +147,22 @@ class BookingCreate extends RoomsXMLRequest
     {
         $this->CommitLevel = $CommitLevel;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getBookingId()
+    {
+        return $this->BookingId;
+    }
+
+    /**
+     * @param mixed $BookingId
+     */
+    public function setBookingId($BookingId)
+    {
+        $this->BookingId = $BookingId;
+    }
+
+
 }
