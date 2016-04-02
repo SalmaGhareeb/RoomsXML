@@ -59,6 +59,13 @@ class AvailabilitySearch extends RoomsXMLRequest
 
     /**
      * @XmlElement(cdata=false)
+     * @SerializedName("DetailLevel")
+     * @Type(name="string")
+     */
+    private $DetailLevel;
+
+    /**
+     * @XmlElement(cdata=false)
      * @SerializedName("MaxResultsPerHotel")
      * @Type(name="integer")
      */
@@ -114,9 +121,9 @@ class AvailabilitySearch extends RoomsXMLRequest
         $this->setHotelStayDetails($hotelDetails);
         $this->setMaxSearchTime(60);
         $this->setMaxHotels(50);
+        $this->setDetailLevel("full");
         $this->operationData = $this;
         $content             = $this->sendRequest();
-
         return $this->getResponse($content, 'SalmaAbdelhady\RoomsXML\Results\AvailabilitySearchResult');
     }
 
@@ -232,5 +239,20 @@ class AvailabilitySearch extends RoomsXMLRequest
         $this->hotelSearchCriteria = $hotelSearchCriteria;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDetailLevel()
+    {
+        return $this->DetailLevel;
+    }
+
+    /**
+     * @param mixed $DetailLevel
+     */
+    public function setDetailLevel($DetailLevel)
+    {
+        $this->DetailLevel = $DetailLevel;
+    }
 
 }
