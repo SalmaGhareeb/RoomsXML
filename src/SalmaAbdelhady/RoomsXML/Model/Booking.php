@@ -31,7 +31,10 @@ class Booking
 
     /**
      * @var
-     * @Type(name="SalmaAbdelhady\RoomsXML\Model\HotelBooking")
+     * @SerializedName("HotelBooking")
+     * @XmlList(inline=true,entry="HotelBooking")
+     * @XmlElement(cdata=false)
+     * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\HotelBooking>")
      * @SerializedName("HotelBooking")
      */
     protected $HotelBooking;
