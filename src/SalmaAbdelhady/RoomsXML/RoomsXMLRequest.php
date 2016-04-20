@@ -84,6 +84,8 @@ class RoomsXMLRequest
     }
 
     /**
+     * @param string $content
+     * @param string $model
      * @return array
      */
     public function getResponse($content, $model)
@@ -97,6 +99,7 @@ class RoomsXMLRequest
 
 
     /**
+     * @param string $postData
      * @return Curl
      */
     private function initCurl($postData)
@@ -142,7 +145,7 @@ class RoomsXMLRequest
     }
 
     /**
-     * @param mixed $hotelStayDetails
+     * @param Model\HotelStayDetails $hotelStayDetails
      */
     public function setHotelStayDetails($hotelStayDetails)
     {
@@ -158,7 +161,7 @@ class RoomsXMLRequest
     }
 
     /**
-     * @param mixed $authority
+     * @param RoomsXMLAuthentication $authority
      */
     public function setAuthority($authority)
     {
