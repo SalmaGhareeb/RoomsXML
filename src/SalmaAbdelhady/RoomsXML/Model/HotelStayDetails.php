@@ -1,4 +1,11 @@
 <?php
+/**
+ *
+ * Created by PhpStorm.
+ * User: salmah
+ * Date: 1/21/16
+ * Time: 10:08 PM
+ */
 
 namespace SalmaAbdelhady\RoomsXML\Model;
 
@@ -11,15 +18,13 @@ use JMS\Serializer\Annotation\XmlList;
 use JMS\Serializer\Annotation\XmlRoot;
 
 /**
- * Created by PhpStorm.
- * User: salmah
- * Date: 1/21/16
- * Time: 10:08 PM
+ * Hotel stay details sent to RoomsXML on search
  * @XmlRoot(name="HotelStayDetails")
  */
 class HotelStayDetails
 {
     /**
+     * @var arrivalDate tag
      * @XmlElement(cdata=false)
      * @SerializedName("ArrivalDate")
      * @Type(name="DateTime<'Y-m-d'>")
@@ -27,12 +32,15 @@ class HotelStayDetails
     private $ArrivalDate;
 
     /**
+     * @var hotel stay details nights tag
      * @XmlElement(cdata=false)
      * @Type(name="integer")
      * @SerializedName("Nights")
      */
     private $Nights;
+    
     /**
+     * @var Nationality tag
      * @XmlElement(cdata=false)
      * @Type(name="string")
      * @SerializedName("Nationality")
@@ -41,6 +49,7 @@ class HotelStayDetails
     private $Nationality;
 
     /**
+     * @var Rooms tag
      * @XmlElement(cdata=false)
      * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\Room>")
      * @XmlList(inline = true, entry = "Room")
@@ -57,7 +66,9 @@ class HotelStayDetails
     }
 
     /**
-     * @return mixed
+     * get Arrival date
+     *
+     * @return \DateTime<'Y-m-d'>
      */
     public function getArrivalDate()
     {
@@ -65,7 +76,9 @@ class HotelStayDetails
     }
 
     /**
-     * @param mixed $ArrivalDate
+     * Set Arrival date
+     *
+     * @param DateTime<'Y-m-d'> $ArrivalDate
      */
     public function setArrivalDate($ArrivalDate)
     {
@@ -73,7 +86,9 @@ class HotelStayDetails
     }
 
     /**
-     * @return mixed
+     * Return nights
+     *
+     * @return integer
      */
     public function getNights()
     {
@@ -81,7 +96,9 @@ class HotelStayDetails
     }
 
     /**
-     * @param mixed $Nights
+     * Set nights
+     *
+     * @param integer $Nights
      */
     public function setNights($Nights)
     {
@@ -89,7 +106,9 @@ class HotelStayDetails
     }
 
     /**
-     * @return mixed
+     * Return customer nationality
+     *
+     * @return string
      */
     public function getNationality()
     {
@@ -97,7 +116,9 @@ class HotelStayDetails
     }
 
     /**
-     * @param mixed $Nationality
+     * Set customer nationality
+     *
+     * @param string $Nationality
      */
     public function setNationality($Nationality)
     {
@@ -105,7 +126,9 @@ class HotelStayDetails
     }
 
     /**
-     * @return mixed
+     * Return hotel details rooms
+     *
+     * @return ArrayCollection
      */
     public function getRooms()
     {
@@ -113,7 +136,10 @@ class HotelStayDetails
     }
 
     /**
-     * @param mixed $Rooms
+     * 
+     * Set Rooms tag
+     * 
+     * @param ArrayCollection $Rooms
      */
     public function setRooms($Rooms)
     {
@@ -121,6 +147,8 @@ class HotelStayDetails
     }
 
     /**
+     * Add room to Rooms tag
+     * 
      * @param Room $room
      */
     public function addRoom(Room $room)

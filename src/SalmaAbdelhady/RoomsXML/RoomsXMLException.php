@@ -17,7 +17,11 @@ use SalmaAbdelhady\RoomsXML\RoomsXMLResponse;
  */
 class RoomsXMLException extends \Exception
 {
-
+    /**
+     * RoomsXMLException constructor.
+     * @param null $message
+     * @param null $code
+     */
     public function __construct($message = null, $code = null)
     {
         parent::__construct($message, $code);

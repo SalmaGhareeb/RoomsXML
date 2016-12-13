@@ -4,40 +4,40 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e66be41517171e0d7ad882040217daaa",
-    "content-hash": "2e8dddcc96f1f65c76dc8e7054b91ede",
+    "hash": "836a6814ed3a86096d0bda4c561a5e86",
+    "content-hash": "129e8cd1427b4c9746296850480edde9",
     "packages": [
         {
             "name": "doctrine/annotations",
-            "version": "v1.2.7",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "f25c8aab83e0c3e976fd7d19875f198ccf2f7535"
+                "reference": "30e07cf03edc3cd3ef579d0dd4dd8c58250799a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/f25c8aab83e0c3e976fd7d19875f198ccf2f7535",
-                "reference": "f25c8aab83e0c3e976fd7d19875f198ccf2f7535",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/30e07cf03edc3cd3ef579d0dd4dd8c58250799a5",
+                "reference": "30e07cf03edc3cd3ef579d0dd4dd8c58250799a5",
                 "shasum": ""
             },
             "require": {
                 "doctrine/lexer": "1.*",
-                "php": ">=5.3.2"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
                 "doctrine/cache": "1.*",
-                "phpunit/phpunit": "4.*"
+                "phpunit/phpunit": "^5.6.1"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3.x-dev"
+                    "dev-master": "1.4.x-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\Annotations\\": "lib/"
+                "psr-4": {
+                    "Doctrine\\Common\\Annotations\\": "lib/Doctrine/Common/Annotations"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -73,7 +73,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2015-08-31 12:32:49"
+            "time": "2016-10-24 11:45:47"
         },
         {
             "name": "doctrine/collections",
@@ -251,23 +251,24 @@
         },
         {
             "name": "jms/metadata",
-            "version": "1.5.1",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/metadata.git",
-                "reference": "22b72455559a25777cfd28c4ffda81ff7639f353"
+                "reference": "6a06970a10e0a532fb52d3959547123b84a3b3ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/metadata/zipball/22b72455559a25777cfd28c4ffda81ff7639f353",
-                "reference": "22b72455559a25777cfd28c4ffda81ff7639f353",
+                "url": "https://api.github.com/repos/schmittjoh/metadata/zipball/6a06970a10e0a532fb52d3959547123b84a3b3ab",
+                "reference": "6a06970a10e0a532fb52d3959547123b84a3b3ab",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "doctrine/cache": "~1.0"
+                "doctrine/cache": "~1.0",
+                "symfony/cache": "~3.1"
             },
             "type": "library",
             "extra": {
@@ -282,14 +283,12 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "Apache"
+                "Apache-2.0"
             ],
             "authors": [
                 {
-                    "name": "Johannes Schmitt",
-                    "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
-                    "role": "Developer of wrapped JMSSerializerBundle"
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
                 }
             ],
             "description": "Class/method/property metadata management in PHP",
@@ -299,7 +298,7 @@
                 "xml",
                 "yaml"
             ],
-            "time": "2014-07-12 07:13:19"
+            "time": "2016-12-05 10:18:33"
         },
         {
             "name": "jms/parser-lib",
@@ -338,16 +337,16 @@
         },
         {
             "name": "jms/serializer",
-            "version": "1.1.0",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "fe13a1f993ea3456e195b7820692f2eb2b6bbb48"
+                "reference": "a29d9a204efc3ca3f39a9d182a83fd34462fef3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/fe13a1f993ea3456e195b7820692f2eb2b6bbb48",
-                "reference": "fe13a1f993ea3456e195b7820692f2eb2b6bbb48",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/a29d9a204efc3ca3f39a9d182a83fd34462fef3f",
+                "reference": "a29d9a204efc3ca3f39a9d182a83fd34462fef3f",
                 "shasum": ""
             },
             "require": {
@@ -357,9 +356,6 @@
                 "jms/parser-lib": "1.*",
                 "php": ">=5.4.0",
                 "phpcollection/phpcollection": "~0.1"
-            },
-            "conflict": {
-                "twig/twig": "<1.12"
             },
             "require-dev": {
                 "doctrine/orm": "~2.1",
@@ -372,7 +368,7 @@
                 "symfony/translation": "~2.0",
                 "symfony/validator": "~2.0",
                 "symfony/yaml": "2.*",
-                "twig/twig": "~1.12|~2.0"
+                "twig/twig": ">=1.8,<2.0-dev"
             },
             "suggest": {
                 "symfony/yaml": "Required if you'd like to serialize data to YAML format."
@@ -380,7 +376,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "0.17-dev"
                 }
             },
             "autoload": {
@@ -407,7 +403,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2015-10-27 09:24:41"
+            "time": "2015-06-16 11:50:24"
         },
         {
             "name": "kriswallsmith/buzz",
@@ -459,16 +455,16 @@
         },
         {
             "name": "phpcollection/phpcollection",
-            "version": "0.4.0",
+            "version": "0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/php-collection.git",
-                "reference": "b8bf55a0a929ca43b01232b36719f176f86c7e83"
+                "reference": "f2bcff45c0da7c27991bbc1f90f47c4b7fb434a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/php-collection/zipball/b8bf55a0a929ca43b01232b36719f176f86c7e83",
-                "reference": "b8bf55a0a929ca43b01232b36719f176f86c7e83",
+                "url": "https://api.github.com/repos/schmittjoh/php-collection/zipball/f2bcff45c0da7c27991bbc1f90f47c4b7fb434a6",
+                "reference": "f2bcff45c0da7c27991bbc1f90f47c4b7fb434a6",
                 "shasum": ""
             },
             "require": {
@@ -477,7 +473,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.3-dev"
+                    "dev-master": "0.4-dev"
                 }
             },
             "autoload": {
@@ -491,10 +487,8 @@
             ],
             "authors": [
                 {
-                    "name": "Johannes Schmitt",
-                    "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
-                    "role": "Developer of wrapped JMSSerializerBundle"
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
                 }
             ],
             "description": "General-Purpose Collection Library for PHP",
@@ -505,7 +499,7 @@
                 "sequence",
                 "set"
             ],
-            "time": "2014-03-11 13:46:42"
+            "time": "2015-05-17 12:39:23"
         },
         {
             "name": "phpoption/phpoption",
@@ -561,16 +555,16 @@
     "packages-dev": [
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.1.1",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "1289d16209491b584839022f29257ad859b8532d"
+                "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/1289d16209491b584839022f29257ad859b8532d",
-                "reference": "1289d16209491b584839022f29257ad859b8532d",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/e79d363049d1c2128f133a2667e4f4190904f7f4",
+                "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4",
                 "shasum": ""
             },
             "require": {
@@ -582,7 +576,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.3-dev"
                 }
             },
             "autoload": {
@@ -616,20 +610,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-01-20 09:13:37"
+            "time": "2016-11-14 01:06:16"
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v2.8.4",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "1f840df081f59cbe25140742bbe94a0dfac0222a"
+                "reference": "873e692cdc3ed80ab3c1d6404b087ce396dd4acc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/1f840df081f59cbe25140742bbe94a0dfac0222a",
-                "reference": "1f840df081f59cbe25140742bbe94a0dfac0222a",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/873e692cdc3ed80ab3c1d6404b087ce396dd4acc",
+                "reference": "873e692cdc3ed80ab3c1d6404b087ce396dd4acc",
                 "shasum": ""
             },
             "require": {
@@ -679,7 +673,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2016-03-07 14:04:32"
+            "time": "2016-12-06 16:05:07"
         }
     ],
     "aliases": [],
