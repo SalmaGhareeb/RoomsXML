@@ -95,6 +95,7 @@ class AvailabilitySearch extends RoomsXMLRequest
         $hotelDetails->setArrivalDate(new \DateTime($payLoad['arrivalDate']));
         $hotelDetails->setNationality($payLoad['nationality']);
         $hotelDetails->setNights($payLoad['nights']);
+
         foreach ($payLoad['rooms'] as $room) {
             $hotelRoom = new Room();
             $guests    = new Guests();
@@ -104,10 +105,9 @@ class AvailabilitySearch extends RoomsXMLRequest
             }
             for ($i = 0; $i < $room['child']; $i++) {
                 $ch = new Person();
-                $ch->setAge(12);
+                $ch->setAge($room['child_ages'][$i]);
                 $guests->addChild($ch);
             }
-
             $hotelRoom->setGuests($guests);
             $hotelDetails->addRoom($hotelRoom);
         }
