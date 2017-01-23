@@ -37,7 +37,7 @@ class RoomsXMLRequest
      * @Type(name="SalmaAbdelhady\RoomsXML\Model\HotelStayDetails")
      * @SerializedName("HotelStayDetails")
      */
-    public $HotelStayDetails;
+    public $hotelStayDetails;
 
     /**
      * @XmlElement(cdata=false)
