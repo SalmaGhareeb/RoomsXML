@@ -46,6 +46,7 @@ class BookingCancel extends RoomsXMLRequest
     {
         $this->setCommitLevel($payLoad['commitLevel']);
         $this->setBookingId($payLoad['bookingId']);
+        $this->setAuthority($this->auth);
         $this->operationData = $this;
     
         $content             = $this->sendRequest();
