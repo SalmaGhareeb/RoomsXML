@@ -12,6 +12,7 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlAttribute;
 use JMS\Serializer\Annotation\XmlRoot;
+use JMS\Serializer\Annotation\XmlList;
 
 /**
  * Class Result
@@ -30,10 +31,11 @@ class Result
 
     /**
      * @var
-     * @Type(name="SalmaAbdelhady\RoomsXML\Model\Room")
+     * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\Room>")
+     * @XmlList(inline = true, entry = "Room")
      * @SerializedName("Room")
      */
-    private $room;
+    private $rooms;
 
     /**
      * @return mixed
@@ -54,17 +56,17 @@ class Result
     /**
      * @return mixed
      */
-    public function getRoom()
+    public function getRooms()
     {
-        return $this->room;
+        return $this->rooms;
     }
 
     /**
-     * @param mixed $room
+     * @param mixed $rooms
      */
-    public function setRoom($room)
+    public function setRooms($rooms)
     {
-        $this->room = $room;
+        $this->rooms = $rooms;
     }
 
 
