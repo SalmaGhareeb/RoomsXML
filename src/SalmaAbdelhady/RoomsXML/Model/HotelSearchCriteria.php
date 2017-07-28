@@ -10,6 +10,7 @@ namespace SalmaAbdelhady\RoomsXML\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlRoot;
 
 /**
@@ -21,6 +22,7 @@ class HotelSearchCriteria
 {
     /**
      * @var
+     * @XmlElement(cdata=false)
      * @SerializedName("HotelName")
      * @Type("string")
      */
@@ -28,6 +30,7 @@ class HotelSearchCriteria
 
     /**
      * @var
+     * @XmlElement(cdata=false)
      * @SerializedName("HotelType")
      * @Type("string")
      */
@@ -35,6 +38,7 @@ class HotelSearchCriteria
 
     /**
      * @var
+     * @XmlElement(cdata=false)
      * @SerializedName("MinStars")
      * @Type("integer")
      */
@@ -42,6 +46,7 @@ class HotelSearchCriteria
 
     /**
      * @var
+     * @XmlElement(cdata=false)
      * @SerializedName("MinPrice")
      * @Type("double")
      */
@@ -50,6 +55,7 @@ class HotelSearchCriteria
 
     /**
      * @var
+     * @XmlElement(cdata=false)
      * @SerializedName("MaxPrice")
      * @Type("double")
      */
@@ -57,12 +63,14 @@ class HotelSearchCriteria
 
     /**
      * @var
+     * @XmlElement(cdata=false)
      * @SerializedName("AvailabilityStatus")
      * @Type("string")
      */
     private $AvailabilityStatus;
     /**
      * @var
+     * @XmlElement(cdata=false)
      * @SerializedName("DetailLevel")
      * @Type("string")
      */
