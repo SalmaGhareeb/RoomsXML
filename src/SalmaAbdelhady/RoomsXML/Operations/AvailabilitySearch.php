@@ -98,7 +98,7 @@ class AvailabilitySearch extends RoomsXMLRequest
 
         foreach ($payLoad['rooms'] as $room) {
             $hotelRoom = new Room();
-            $guests    = new Guests();
+            $guests = new Guests();
 
             for ($i = 0; $i < $room['adult']; $i++) {
                 $guests->addAdult(new Person());
@@ -108,6 +108,11 @@ class AvailabilitySearch extends RoomsXMLRequest
                 $ch->setAge($room['child_ages'][$i]);
                 $guests->addChild($ch);
             }
+
+            if (isset($room['meal_type'])) {
+                $hotelRoom->setMealType($room['meal_type']);
+            }
+
             $hotelRoom->setGuests($guests);
             $hotelDetails->addRoom($hotelRoom);
         }
@@ -123,7 +128,7 @@ class AvailabilitySearch extends RoomsXMLRequest
         $this->setMaxHotels(50);
         $this->setDetailLevel("full");
         $this->operationData = $this;
-        $content             = $this->sendRequest();
+        $content = $this->sendRequest();
         return $this->getResponse($content, 'SalmaAbdelhady\RoomsXML\Results\AvailabilitySearchResult');
     }
 
