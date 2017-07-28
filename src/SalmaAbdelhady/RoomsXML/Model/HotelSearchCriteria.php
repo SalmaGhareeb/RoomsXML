@@ -21,50 +21,50 @@ class HotelSearchCriteria
 {
     /**
      * @var
-     * @SerializedName(name="HotelName")
-     * @Type(name="string")
+     * @SerializedName("HotelName")
+     * @Type("string")
      */
     private $HotelName;
 
     /**
      * @var
-     * @SerializedName(name="HotelType")
-     * @Type(name="string")
+     * @SerializedName("HotelType")
+     * @Type("string")
      */
     private $HotelType;
 
     /**
      * @var
-     * @SerializedName(name="MinStars")
-     * @Type(name="integer")
+     * @SerializedName("MinStars")
+     * @Type("integer")
      */
     private $MinStars;
 
     /**
      * @var
-     * @SerializedName(name="MinPrice")
-     * @Type(name="double")
+     * @SerializedName("MinPrice")
+     * @Type("double")
      */
     private $MinPrice;
 
 
     /**
      * @var
-     * @SerializedName(name="MaxPrice")
-     * @Type(name="double")
+     * @SerializedName("MaxPrice")
+     * @Type("double")
      */
     private $MaxPrice;
 
     /**
      * @var
-     * @SerializedName(name="AvailabilityStatus")
-     * @Type(name="array")
+     * @SerializedName("AvailabilityStatus")
+     * @Type("string")
      */
     private $AvailabilityStatus;
     /**
      * @var
-     * @SerializedName(name="DetailLevel")
-     * @Type(name="string")
+     * @SerializedName("DetailLevel")
+     * @Type("string")
      */
     private $DetailLevel;
 
