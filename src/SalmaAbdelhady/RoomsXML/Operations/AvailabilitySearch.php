@@ -109,10 +109,6 @@ class AvailabilitySearch extends RoomsXMLRequest
                 $guests->addChild($ch);
             }
 
-            if (isset($room['meal_type'])) {
-                $hotelRoom->setMealType($room['meal_type']);
-            }
-
             $hotelRoom->setGuests($guests);
             $hotelDetails->addRoom($hotelRoom);
         }

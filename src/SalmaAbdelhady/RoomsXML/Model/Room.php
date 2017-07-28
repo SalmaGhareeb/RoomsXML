@@ -37,8 +37,7 @@ class Room
 
     /**
      * @var
-     * @XmlElement(cdata=false)
-     * @Type(name="string")
+     * @Type(name="SalmaAbdelhady\RoomsXML\Model\MealType")
      * @SerializedName("MealType")
      */
     protected $mealType;
