@@ -10,6 +10,7 @@ namespace SalmaAbdelhady\RoomsXML\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlRoot;
 
 /**
@@ -21,50 +22,57 @@ class HotelSearchCriteria
 {
     /**
      * @var
-     * @SerializedName(name="HotelName")
-     * @Type(name="string")
+     * @XmlElement(cdata=false)
+     * @SerializedName("HotelName")
+     * @Type("string")
      */
     private $HotelName;
 
     /**
      * @var
-     * @SerializedName(name="HotelType")
-     * @Type(name="string")
+     * @XmlElement(cdata=false)
+     * @SerializedName("HotelType")
+     * @Type("string")
      */
     private $HotelType;
 
     /**
      * @var
-     * @SerializedName(name="MinStars")
-     * @Type(name="integer")
+     * @XmlElement(cdata=false)
+     * @SerializedName("MinStars")
+     * @Type("integer")
      */
     private $MinStars;
 
     /**
      * @var
-     * @SerializedName(name="MinPrice")
-     * @Type(name="double")
+     * @XmlElement(cdata=false)
+     * @SerializedName("MinPrice")
+     * @Type("double")
      */
     private $MinPrice;
 
 
     /**
      * @var
-     * @SerializedName(name="MaxPrice")
-     * @Type(name="double")
+     * @XmlElement(cdata=false)
+     * @SerializedName("MaxPrice")
+     * @Type("double")
      */
     private $MaxPrice;
 
     /**
      * @var
-     * @SerializedName(name="AvailabilityStatus")
-     * @Type(name="array")
+     * @XmlElement(cdata=false)
+     * @SerializedName("AvailabilityStatus")
+     * @Type("string")
      */
     private $AvailabilityStatus;
     /**
      * @var
-     * @SerializedName(name="DetailLevel")
-     * @Type(name="string")
+     * @XmlElement(cdata=false)
+     * @SerializedName("DetailLevel")
+     * @Type("string")
      */
     private $DetailLevel;
 
