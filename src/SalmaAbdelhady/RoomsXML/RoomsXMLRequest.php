@@ -115,6 +115,7 @@ class RoomsXMLRequest
         $ch->setOption(CURLOPT_HTTPHEADER, array('Content-Type:  text/xml'));
         $ch->setOption(CURLOPT_POSTFIELDS, $postData);
         $ch->setOption(CURLOPT_RETURNTRANSFER, 1);
+        $ch->setOption(CURLOPT_ENCODING, 'gzip');
         $ch->setTimeout(100);
 
         return $ch;

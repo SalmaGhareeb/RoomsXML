@@ -10,6 +10,7 @@ namespace SalmaAbdelhady\RoomsXML\Model;
 
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\XmlList;
 use JMS\Serializer\Annotation\XmlRoot;
 
 /**
@@ -22,8 +23,8 @@ class CancellationFees
 
     /**
      * @var
-     * @SerializedName("Fee")
-     * @Type(name="SalmaAbdelhady\RoomsXML\Model\Fee")
+     * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\Fee>")
+     * @XmlList(inline=true, entry="Fee")
      */
     protected $fee;
 
