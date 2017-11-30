@@ -5,7 +5,9 @@
     "roomsxml",
     "rooms",
     "hotels",
-    "travel","locations","accommodation"
+    "travel",
+    "locations",
+    "accommodation"
   ],
   "homepage": "https://github.com/SalmaAbdelhady/RoomsXML",
   "type": "library",
@@ -19,23 +21,20 @@
     }
   ],
   "require": {
-    "php": ">=5.4.0",
-    "kriswallsmith/buzz": "^0.15.0",
+    "php": ">=5.6.0",
+    "kriswallsmith/buzz": "^0.15.2",
     "ext-curl": "*",
-    "jms/serializer": "~1.3",
-    "doctrine/collections": "^1.3"
-
+    "jms/serializer": "^1.9",
+    "doctrine/collections": "^1.5"
   },
   "require-dev": {
-    "symfony/var-dumper": "~2.3"
+    "symfony/var-dumper": "~2.3",
+    "phpunit/phpunit": "^6.4"
   },
   "autoload": {
-    "psr-0": {
-      "SalmaAbdelhady\\RoomsXML": "src/"
-    },
-    "psr-4":
-    {
-      "SalmaAbdelhady\\RoomsXML\\" : "src/"
+    "psr-4": {
+      "SalmaAbdelhady\\RoomsXML\\": "src/",
+      "SalmaAbdelhady\\RoomsXML\\Tests\\": "tests/"
     }
   },
   "minimum-stability": "stable",
