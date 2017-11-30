@@ -1,21 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: salmah
- * Date: 1/30/16
- * Time: 11:22 PM
- */
 
 namespace SalmaAbdelhady\RoomsXML\Model;
 
+use JMS\Serializer\Annotation as JMS;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\XmlRoot;
 
 /**
  * Class Error
  * @package SalmaAbdelhady\RoomsXML\Model
- * @XmlRoot("Error")
+ * @JMS\XmlRoot("Error")
  */
 class Error
 {
@@ -63,8 +57,4 @@ class Error
     {
         $this->Description = $Description;
     }
-
-
-
-
 }

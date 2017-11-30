@@ -1,14 +1,6 @@
 <?php
-/**
- *
- * Created by PhpStorm.
- * User: salmah
- * Date: 1/21/16
- * Time: 10:08 PM
- */
 
 namespace SalmaAbdelhady\RoomsXML\Model;
-
 
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation\SerializedName;
@@ -24,7 +16,7 @@ use JMS\Serializer\Annotation\XmlRoot;
 class HotelStayDetails
 {
     /**
-     * @var arrivalDate tag
+     * @var \DateTime tag
      * @XmlElement(cdata=false)
      * @SerializedName("ArrivalDate")
      * @Type(name="DateTime<'Y-m-d'>")
@@ -32,15 +24,15 @@ class HotelStayDetails
     private $ArrivalDate;
 
     /**
-     * @var hotel stay details nights tag
+     * @var int
      * @XmlElement(cdata=false)
      * @Type(name="integer")
      * @SerializedName("Nights")
      */
     private $Nights;
-    
+
     /**
-     * @var Nationality tag
+     * @var string tag
      * @XmlElement(cdata=false)
      * @Type(name="string")
      * @SerializedName("Nationality")
@@ -49,7 +41,7 @@ class HotelStayDetails
     private $Nationality;
 
     /**
-     * @var Rooms tag
+     * @var array tag
      * @XmlElement(cdata=false)
      * @Type(name="array<SalmaAbdelhady\RoomsXML\Model\Room>")
      * @XmlList(inline = true, entry = "Room")
@@ -78,7 +70,7 @@ class HotelStayDetails
     /**
      * Set Arrival date
      *
-     * @param DateTime<'Y-m-d'> $ArrivalDate
+     * @param \DateTime<'Y-m-d'> $ArrivalDate
      */
     public function setArrivalDate($ArrivalDate)
     {
@@ -86,7 +78,7 @@ class HotelStayDetails
     }
 
     /**
-     * Return nights
+     * Return int
      *
      * @return integer
      */
@@ -136,9 +128,9 @@ class HotelStayDetails
     }
 
     /**
-     * 
+     *
      * Set Rooms tag
-     * 
+     *
      * @param ArrayCollection $Rooms
      */
     public function setRooms($Rooms)
@@ -148,7 +140,7 @@ class HotelStayDetails
 
     /**
      * Add room to Rooms tag
-     * 
+     *
      * @param Room $room
      */
     public function addRoom(Room $room)

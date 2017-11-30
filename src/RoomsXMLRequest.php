@@ -1,20 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: salmah
- * Date: 7/28/15
- * Time: 10:52 AM
- */
 
 namespace SalmaAbdelhady\RoomsXML;
-
 
 use Buzz\Browser;
 use Buzz\Client\Curl;
 use Buzz\Message\Response;
-use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\XmlElement;
+use JMS\Serializer\Annotation as JMS;
 use JMS\Serializer\SerializerBuilder;
 use SalmaAbdelhady\RoomsXML\Model\Error;
 
@@ -31,53 +22,41 @@ class RoomsXMLRequest
 
     public $operationData;
 
-
     /**
-     * @XmlElement(cdata=false)
-     * @Type(name="SalmaAbdelhady\RoomsXML\Model\HotelStayDetails")
-     * @SerializedName("HotelStayDetails")
-     */
-    public $hotelStayDetails;
-
-    /**
-     * @XmlElement(cdata=false)
-     * @Type(name="SalmaAbdelhady\RoomsXML\RoomsXMLAuthentication")
-     * @SerializedName("Authority")
+     * @JMS\Type("SalmaAbdelhady\RoomsXML\RoomsXMLAuthentication")
+     * @JMS\SerializedName("Authority")
      */
     public $authority;
+
+    /**
+     * @JMS\Type("SalmaAbdelhady\RoomsXML\Model\HotelStayDetails")
+     * @JMS\SerializedName("HotelStayDetails")
+     */
+    public $hotelStayDetails;
 
 
     /**
      * @param $config
      */
-    public function __construct($config)
+    public function __construct(RoomsXMLAuthentication $config)
     {
-        $this->auth = new RoomsXMLAuthentication();
-
-        $this->auth->setCurrency($config['currency']);
-        $this->auth->setOrg($config['org']);
-        $this->auth->setTestMode($config['test']);
-        $this->auth->setUserName($config['username']);
-        $this->auth->setPassword($config['password']);
-        $this->auth->setVersion($config['api_version']);
-        $this->auth->setLanguage($config['lang']);
-        $this->apiURL = $config['api_url'];
+        $this->authority = $config;
+        $this->apiURL    = "http://www.roomsxmldemo.com/RXLStagingServices/ASMX/XmlService.asmx";
     }
 
 
     /**
-     * @param $payload
      * @return string
      * @throws RoomsXMLException
      */
     public function sendRequest()
     {
         $serializer = SerializerBuilder::create()->build();
-        $data       = $serializer->serialize($this->operationData, 'xml');
 
-        $cURL       = $this->initCurl($data);
-        $browser    = new Browser($cURL);
-        $response   = $browser->post($this->apiURL);
+        $data     = $serializer->serialize($this, 'xml');
+        $cURL     = $this->initCurl($data);
+        $browser  = new Browser($cURL);
+        $response = $browser->post($this->apiURL);
         $this->verifyResponse($response);
 
         return $response->getContent();
@@ -86,6 +65,7 @@ class RoomsXMLRequest
     /**
      * @param string $content
      * @param string $model
+     *
      * @return array
      */
     public function getResponse($content, $model)
@@ -100,6 +80,7 @@ class RoomsXMLRequest
 
     /**
      * @param string $postData
+     *
      * @return Curl
      */
     private function initCurl($postData)
@@ -123,12 +104,14 @@ class RoomsXMLRequest
 
     /**
      * @param Response $response
+     *
      * @throws RoomsXMLException
      */
     private function verifyResponse(Response $response)
     {
         if ($response->getContent()) {
             $serializer = SerializerBuilder::create()->build();
+            die(dump($response->getContent()));
             /** @var Error $error */
             $error = $serializer->deserialize($response->getContent(), 'SalmaAbdelhady\RoomsXML\Model\Error', 'xml');
             if ($error->getCode()) {

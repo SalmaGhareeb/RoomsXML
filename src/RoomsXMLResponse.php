@@ -7,6 +7,7 @@
  */
 
 namespace SalmaAbdelhady\RoomsXML;
+
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 
@@ -40,7 +41,7 @@ class RoomsXMLResponse extends \ArrayObject
         $resultArray = parent::getArrayCopy();
 
         foreach ($resultArray as $key => $val) {
-            if (!is_object($val)) {
+            if ( ! is_object($val)) {
                 continue;
             }
 
@@ -58,7 +59,6 @@ class RoomsXMLResponse extends \ArrayObject
 
         return array_values($this->getArrayCopy());
     }
-
 
 
     /**

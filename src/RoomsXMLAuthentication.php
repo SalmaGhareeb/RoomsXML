@@ -1,91 +1,81 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: salmah
- * Date: 7/30/15
- * Time: 3:18 PM
- */
 
 namespace SalmaAbdelhady\RoomsXML;
 
-
-use JMS\Serializer\Annotation\SerializedName;
-use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\XmlElement;
-use JMS\Serializer\Annotation\XmlRoot;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class RoomsXMLAuthentication
  * @package SalmaAbdelhady\RoomsXML
- * @XmlRoot(name="Authority")
+ * @JMS\XmlRoot(name="Authority")
  */
 class RoomsXMLAuthentication
 {
 
     /**
      * @var
-     * @Type(name="string")
-     * @SerializedName("Org")
-     * @XmlElement(cdata=false)
+     * @JMS\Type(name="string")
+     * @JMS\SerializedName("Org")
+     * @JMS\XmlElement(cdata=false)
      */
     private $Org;
 
     /**
      * @var
-     * @XmlElement(cdata=false)
-     * @Type(name="string")
-     * @SerializedName("User")
+     * @JMS\XmlElement(cdata=false)
+     * @JMS\Type(name="string")
+     * @JMS\SerializedName("User")
      */
     private $userName;
 
     /**
      * @var
-     * @XmlElement(cdata=false)
-     * @SerializedName("Password")
-     * @Type(name="string")
+     * @JMS\XmlElement(cdata=false)
+     * @JMS\SerializedName("Password")
+     * @JMS\Type(name="string")
      */
     private $password;
 
     /**
      * @var
-     * @Type(name="string")
-     * @SerializedName("Language")
-     * @XmlElement(cdata=false)
+     * @JMS\Type(name="string")
+     * @JMS\SerializedName("Language")
+     * @JMS\XmlElement(cdata=false)
      */
     private $language;
     /**
      * @var
-     * @Type(name="string")
-     * @SerializedName("Currency")
-     * @XmlElement(cdata=false)
+     * @JMS\Type(name="string")
+     * @JMS\SerializedName("Currency")
+     * @JMS\XmlElement(cdata=false)
      */
     private $currency;
     /**
      * @var
-     * @XmlElement(cdata=false)
-     * @Type(name="string")
-     * @SerializedName("DebugMode")
+     * @JMS\XmlElement(cdata=false)
+     * @JMS\Type(name="string")
+     * @JMS\SerializedName("DebugMode")
      */
     private $debugMode;
     /**
      * @var
-     * @XmlElement(cdata=false)
-     * @Type(name="string")
-     * @SerializedName("TestMode")
+     * @JMS\XmlElement(cdata=false)
+     * @JMS\Type(name="string")
+     * @JMS\SerializedName("TestMode")
      */
     private $testMode;
     /**
      * @var
-     * @XmlElement(cdata=false)
-     * @Type(name="string")
-     * @SerializedName("Timeout")
+     * @JMS\XmlElement(cdata=false)
+     * @JMS\Type(name="string")
+     * @JMS\SerializedName("Timeout")
      */
     private $timeOut;
     /**
      * @var
-     * @XmlElement(cdata=false)
-     * @Type(name="string")
-     * @SerializedName("Version")
+     * @JMS\XmlElement(cdata=false)
+     * @JMS\Type(name="string")
+     * @JMS\SerializedName("Version")
      */
     private $version;
 

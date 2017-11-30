@@ -87,6 +87,7 @@ class AvailabilitySearch extends RoomsXMLRequest
 
     /**
      * @param $payLoad
+     *
      * @return array
      */
     public function checkAvailability($payLoad)
@@ -98,7 +99,7 @@ class AvailabilitySearch extends RoomsXMLRequest
 
         foreach ($payLoad['rooms'] as $room) {
             $hotelRoom = new Room();
-            $guests = new Guests();
+            $guests    = new Guests();
 
             for ($i = 0; $i < $room['adult']; $i++) {
                 $guests->addAdult(new Person());
@@ -118,13 +119,15 @@ class AvailabilitySearch extends RoomsXMLRequest
         if (isset($payLoad['hotelId'])) {
             $this->setHotelId($payLoad['hotelId']);
         }
-        $this->setAuthority($this->auth);
         $this->setHotelStayDetails($hotelDetails);
         $this->setMaxSearchTime(60);
         $this->setMaxHotels(50);
         $this->setDetailLevel("full");
-        $this->operationData = $this;
+
         $content = $this->sendRequest();
+
+
+
         return $this->getResponse($content, 'SalmaAbdelhady\RoomsXML\Results\AvailabilitySearchResult');
     }
 
