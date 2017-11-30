@@ -8,6 +8,7 @@ use Buzz\Message\Response;
 use JMS\Serializer\Annotation as JMS;
 use JMS\Serializer\SerializerBuilder;
 use SalmaAbdelhady\RoomsXML\Model\Error;
+use SalmaAbdelhady\RoomsXML\Model\HotelStayDetails;
 
 
 /**
@@ -29,6 +30,7 @@ class RoomsXMLRequest
     public $authority;
 
     /**
+     * @var HotelStayDetails
      * @JMS\Type("SalmaAbdelhady\RoomsXML\Model\HotelStayDetails")
      * @JMS\SerializedName("HotelStayDetails")
      */
@@ -111,7 +113,7 @@ class RoomsXMLRequest
     {
         if ($response->getContent()) {
             $serializer = SerializerBuilder::create()->build();
-            die(dump($response->getContent()));
+
             /** @var Error $error */
             $error = $serializer->deserialize($response->getContent(), 'SalmaAbdelhady\RoomsXML\Model\Error', 'xml');
             if ($error->getCode()) {

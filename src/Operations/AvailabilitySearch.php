@@ -15,7 +15,6 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlRoot;
 use SalmaAbdelhady\RoomsXML\Model\Guests;
-use SalmaAbdelhady\RoomsXML\Model\HotelStayDetails;
 use SalmaAbdelhady\RoomsXML\Model\Person;
 use SalmaAbdelhady\RoomsXML\Model\Room;
 use SalmaAbdelhady\RoomsXML\RoomsXMLRequest;
@@ -90,14 +89,9 @@ class AvailabilitySearch extends RoomsXMLRequest
      *
      * @return array
      */
-    public function checkAvailability($payLoad)
+    public function checkAvailability()
     {
-        $hotelDetails = new HotelStayDetails();
-        $hotelDetails->setArrivalDate(new \DateTime($payLoad['arrivalDate']));
-        $hotelDetails->setNationality($payLoad['nationality']);
-        $hotelDetails->setNights($payLoad['nights']);
-
-        foreach ($payLoad['rooms'] as $room) {
+        foreach ($this->hotelStayDetails->getRoomsDetails() as $room) {
             $hotelRoom = new Room();
             $guests    = new Guests();
 
@@ -111,22 +105,14 @@ class AvailabilitySearch extends RoomsXMLRequest
             }
 
             $hotelRoom->setGuests($guests);
-            $hotelDetails->addRoom($hotelRoom);
+            $this->hotelStayDetails->addRoom($hotelRoom);
         }
-        if (isset($payLoad['regionId'])) {
-            $this->setRegionId($payLoad['regionId']);
-        }
-        if (isset($payLoad['hotelId'])) {
-            $this->setHotelId($payLoad['hotelId']);
-        }
-        $this->setHotelStayDetails($hotelDetails);
+
         $this->setMaxSearchTime(60);
         $this->setMaxHotels(50);
         $this->setDetailLevel("full");
 
         $content = $this->sendRequest();
-
-
 
         return $this->getResponse($content, 'SalmaAbdelhady\RoomsXML\Results\AvailabilitySearchResult');
     }

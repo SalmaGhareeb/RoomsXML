@@ -49,6 +49,8 @@ class HotelStayDetails
      */
     private $Rooms;
 
+    private $roomsDetails;
+
     /**
      * HotelStayDetails constructor.
      */
@@ -147,4 +149,22 @@ class HotelStayDetails
     {
         $this->Rooms->add($room);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRoomsDetails()
+    {
+        return $this->roomsDetails;
+    }
+
+    /**
+     * @param mixed $roomsDetails
+     */
+    public function setRoomsDetails($roomsDetails)
+    {
+        $this->roomsDetails = $roomsDetails;
+    }
+
+
 }
