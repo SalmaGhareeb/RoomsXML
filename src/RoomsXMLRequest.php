@@ -13,6 +13,7 @@ use SalmaAbdelhady\RoomsXML\Model\HotelStayDetails;
 
 /**
  * Class RoomsXMLRequest
+ *
  * @package SalmaAbdelhady\RoomsXML
  */
 class RoomsXMLRequest
@@ -43,7 +44,7 @@ class RoomsXMLRequest
     public function __construct(RoomsXMLAuthentication $config)
     {
         $this->authority = $config;
-        $this->apiURL    = "http://www.roomsxmldemo.com/RXLStagingServices/ASMX/XmlService.asmx";
+        $this->apiURL    = getenv('API_URL');
     }
 
 
@@ -51,7 +52,7 @@ class RoomsXMLRequest
      * @return string
      * @throws RoomsXMLException
      */
-    public function sendRequest()
+    public function sendRequest(): string
     {
         $serializer = SerializerBuilder::create()->build();
 
@@ -70,7 +71,7 @@ class RoomsXMLRequest
      *
      * @return array
      */
-    public function getResponse($content, $model)
+    public function getResponse(string $content, string $model): array
     {
         $serializer = SerializerBuilder::create()->build();
         $response   = $serializer->deserialize($content, $model, 'xml');
@@ -85,7 +86,7 @@ class RoomsXMLRequest
      *
      * @return Curl
      */
-    private function initCurl($postData)
+    private function initCurl(string $postData): Curl
     {
         $ch = new Curl();
 
@@ -95,7 +96,7 @@ class RoomsXMLRequest
         $ch->setOption(CURLOPT_SSL_VERIFYHOST, 0); //ssl stuff
         $ch->setOption(CURLOPT_SSL_VERIFYPEER, 1);
         $ch->setOption(CURLOPT_POST, 1);
-        $ch->setOption(CURLOPT_HTTPHEADER, array('Content-Type:  text/xml'));
+        $ch->setOption(CURLOPT_HTTPHEADER, ['Content-Type:  text/xml']);
         $ch->setOption(CURLOPT_POSTFIELDS, $postData);
         $ch->setOption(CURLOPT_RETURNTRANSFER, 1);
         $ch->setOption(CURLOPT_ENCODING, 'gzip');
@@ -109,7 +110,7 @@ class RoomsXMLRequest
      *
      * @throws RoomsXMLException
      */
-    private function verifyResponse(Response $response)
+    private function verifyResponse(Response $response): void
     {
         if ($response->getContent()) {
             $serializer = SerializerBuilder::create()->build();

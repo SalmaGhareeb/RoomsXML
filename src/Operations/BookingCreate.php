@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: salmah
- * Date: 2/9/16
- * Time: 5:04 PM
- */
 
 namespace SalmaAbdelhady\RoomsXML\Operations;
 
@@ -20,6 +14,7 @@ use SalmaAbdelhady\RoomsXML\RoomsXMLRequest;
 
 /**
  * Class BookingCreate
+ *
  * @package SalmaAbdelhady\RoomsXML\Operations
  * @XmlRoot("BookingCreate")
  */
@@ -59,10 +54,13 @@ class BookingCreate extends RoomsXMLRequest
 
 
     /**
-     * @param $payLoad
+     * @param array $payLoad
+     *
      * @return array
+     * @throws \SalmaAbdelhady\RoomsXML\RoomsXMLException
+     * @author Salma Abdelhady <salma.abdelhady@tajawal.com>
      */
-    public function bookingCreate($payLoad)
+    public function create(array $payLoad): array
     {
         $hotelDetails = new HotelStayDetails();
         $hotelDetails->setNationality($payLoad['nationality']);

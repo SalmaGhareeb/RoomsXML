@@ -14,8 +14,10 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlRoot;
 use SalmaAbdelhady\RoomsXML\RoomsXMLRequest;
+
 /**
  * Class BookingCreate
+ *
  * @package SalmaAbdelhady\RoomsXML\Operations
  * @XmlRoot("BookingCancel")
  */
@@ -39,17 +41,20 @@ class BookingCancel extends RoomsXMLRequest
     private $CommitLevel;
 
     /**
-     * @param $payLoad
+     * @param array $payLoad
+     *
      * @return array
+     * @throws \SalmaAbdelhady\RoomsXML\RoomsXMLException
+     * @author Salma Abdelhady <salma.abdelhady@tajawal.com>
      */
-    public function bookingCancel($payLoad)
+    public function cancelBooking(array $payLoad): array
     {
         $this->setCommitLevel($payLoad['commitLevel']);
         $this->setBookingId($payLoad['bookingId']);
         $this->setAuthority($this->auth);
         $this->operationData = $this;
-    
-        $content             = $this->sendRequest();
+
+        $content = $this->sendRequest();
 
         return $this->getResponse($content, 'SalmaAbdelhady\RoomsXML\Results\BookingCancelResult');
     }

@@ -1,3 +1,5 @@
 /output
 composer.phar
 /vendor/
+
+.idea/
