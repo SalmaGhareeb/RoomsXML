@@ -15,6 +15,7 @@ use SalmaAbdelhady\RoomsXML\RoomsXMLResponse;
 
 /**
  * Class BookingCreateResult
+ *
  * @package SalmaAbdelhady\RoomsXML\Results
  * @XmlRoot("BookingCreateResult")
  */
@@ -65,7 +66,4 @@ class BookingCreateResult extends RoomsXMLResponse
     {
         $this->Booking = $Booking;
     }
-
-
-
 }

@@ -3,12 +3,6 @@
 
 namespace SalmaAbdelhady\RoomsXML\Results;
 
-/**
- * Created by PhpStorm.
- * User: salmah
- * Date: 1/30/16
- * Time: 8:53 PM
- */
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
@@ -20,9 +14,8 @@ use SalmaAbdelhady\RoomsXML\RoomsXMLResponse;
  * Class AvailabilitySearchResult
  * @XmlRoot(name="AvailabilitySearchResult")
  */
-class AvailabilitySearchResult  extends RoomsXMLResponse
+class AvailabilitySearchResult extends RoomsXMLResponse
 {
-
 
     /**
      * @XmlList(inline=true,entry="HotelAvailability")
@@ -34,9 +27,9 @@ class AvailabilitySearchResult  extends RoomsXMLResponse
 
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getHotelAvailability()
+    public function getHotelAvailability(): array
     {
         return $this->hotelAvailability;
     }
@@ -44,7 +37,7 @@ class AvailabilitySearchResult  extends RoomsXMLResponse
     /**
      * @param mixed $hotelAvailability
      */
-    public function setHotelAvailability($hotelAvailability)
+    public function setHotelAvailability($hotelAvailability): void
     {
         $this->hotelAvailability = $hotelAvailability;
     }

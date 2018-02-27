@@ -145,15 +145,15 @@ class HotelStayDetails
      *
      * @param Room $room
      */
-    public function addRoom(Room $room)
+    public function addRoom(Room $room): void
     {
         $this->Rooms->add($room);
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getRoomsDetails()
+    public function getRoomsDetails(): array
     {
         return $this->roomsDetails;
     }

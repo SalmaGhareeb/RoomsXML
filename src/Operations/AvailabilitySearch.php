@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: salmah
- * Date: 1/21/16
- * Time: 10:02 PM
- */
-
 namespace SalmaAbdelhady\RoomsXML\Operations;
 
 
@@ -26,8 +19,6 @@ use SalmaAbdelhady\RoomsXML\RoomsXMLRequest;
  */
 class AvailabilitySearch extends RoomsXMLRequest
 {
-
-
     /**
      * @XmlElement(cdata=false)
      * @Type(name="SalmaAbdelhady\RoomsXML\Model\HotelSearchCriteria")
@@ -85,11 +76,11 @@ class AvailabilitySearch extends RoomsXMLRequest
     private $MaxSearchTime;
 
     /**
-     * @param $payLoad
-     *
      * @return array
+     * @throws \SalmaAbdelhady\RoomsXML\RoomsXMLException
+     * @author Salma Abdelhady <salma.abdelhady@tajawal.com>
      */
-    public function checkAvailability()
+    public function checkAvailability(): array
     {
         foreach ($this->hotelStayDetails->getRoomsDetails() as $room) {
             $hotelRoom = new Room();
