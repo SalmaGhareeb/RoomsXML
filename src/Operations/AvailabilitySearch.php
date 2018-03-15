@@ -10,15 +10,20 @@ use JMS\Serializer\Annotation\XmlRoot;
 use SalmaAbdelhady\RoomsXML\Model\Guests;
 use SalmaAbdelhady\RoomsXML\Model\Person;
 use SalmaAbdelhady\RoomsXML\Model\Room;
+use SalmaAbdelhady\RoomsXML\Results\AvailabilitySearchResult;
 use SalmaAbdelhady\RoomsXML\RoomsXMLRequest;
 
 /**
  * Class AvailabilitySearch
+ *
  * @package SalmaAbdelhady\RoomsXML\Operations
  * @XmlRoot(name="AvailabilitySearch")
  */
 class AvailabilitySearch extends RoomsXMLRequest
 {
+    const DETAILS_LEVEL_FULL  = 'full';
+    const DETAILS_LEVEL_BASIC = 'basic';
+
     /**
      * @XmlElement(cdata=false)
      * @Type(name="SalmaAbdelhady\RoomsXML\Model\HotelSearchCriteria")
@@ -80,7 +85,7 @@ class AvailabilitySearch extends RoomsXMLRequest
      * @throws \SalmaAbdelhady\RoomsXML\RoomsXMLException
      * @author Salma Abdelhady <salma.abdelhady@tajawal.com>
      */
-    public function checkAvailability(): array
+    public function checkAvailability(): AvailabilitySearchResult
     {
         foreach ($this->hotelStayDetails->getRoomsDetails() as $room) {
             $hotelRoom = new Room();

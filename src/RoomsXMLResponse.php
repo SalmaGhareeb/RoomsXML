@@ -14,6 +14,7 @@ use JMS\Serializer\Annotation\Type;
 
 /**
  * Class RoomsXMLResponse
+ *
  * @package SalmaAbdelhady\RoomsXML
  */
 class RoomsXMLResponse extends \ArrayObject
@@ -36,16 +37,16 @@ class RoomsXMLResponse extends \ArrayObject
     /**
      * @return array
      */
-    public function getArrayCopy()
+    public function getArrayCopy(): array
     {
         $resultArray = parent::getArrayCopy();
 
         foreach ($resultArray as $key => $val) {
-            if ( ! is_object($val)) {
+            if (!is_object($val)) {
                 continue;
             }
 
-            $object            = new RoomsXMLResponse($val);
+            $object            = new self($val);
             $resultArray[$key] = $object->getArrayCopy();
         }
 
@@ -60,6 +61,27 @@ class RoomsXMLResponse extends \ArrayObject
         return array_values($this->getArrayCopy());
     }
 
+    /**
+     * @return array
+     * @author Salma Abdelhady <salma.abdelhady@tajawal.com>
+     */
+    public function toArray(): array
+    {
+        $array = [];
+        foreach ($result as $key => $value) {
+            if (is_object($value)) {
+                $array[$key] = object_2_array($value);
+            }
+            if (is_array($value)) {
+                $array[$key] = object_2_array($value);
+            } else {
+                $array[$key] = $value;
+            }
+        }
+
+        return $array;
+    }
+
 
     /**
      * @return mixed
@@ -72,7 +94,7 @@ class RoomsXMLResponse extends \ArrayObject
     /**
      * @param mixed $currency
      */
-    public function setCurrency($currency)
+    public function setCurrency(string $currency)
     {
         $this->currency = $currency;
     }
