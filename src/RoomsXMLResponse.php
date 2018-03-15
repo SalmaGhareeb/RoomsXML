@@ -19,7 +19,6 @@ use JMS\Serializer\Annotation\Type;
  */
 class RoomsXMLResponse extends \ArrayObject
 {
-
     /**
      * @var
      * @SerializedName("Currency")
@@ -56,32 +55,8 @@ class RoomsXMLResponse extends \ArrayObject
 
     public function getResponse()
     {
-        $this->getArrayCopy();
-
         return array_values($this->getArrayCopy());
     }
-
-    /**
-     * @return array
-     * @author Salma Abdelhady <salma.abdelhady@tajawal.com>
-     */
-    public function toArray(): array
-    {
-        $array = [];
-        foreach ($result as $key => $value) {
-            if (is_object($value)) {
-                $array[$key] = object_2_array($value);
-            }
-            if (is_array($value)) {
-                $array[$key] = object_2_array($value);
-            } else {
-                $array[$key] = $value;
-            }
-        }
-
-        return $array;
-    }
-
 
     /**
      * @return mixed
@@ -114,6 +89,4 @@ class RoomsXMLResponse extends \ArrayObject
     {
         $this->TestMode = $TestMode;
     }
-
-
 }
