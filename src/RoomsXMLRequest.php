@@ -69,13 +69,12 @@ class RoomsXMLRequest
      * @param string $content
      * @param string $model
      *
-     * @return array
+     * @return object
      */
-    public function getResponse(string $content, string $model): array
+    public function getResponse(string $content, string $model): object
     {
         $serializer = SerializerBuilder::create()->build();
         $response   = $serializer->deserialize($content, $model, 'xml');
-
 
         return $response;
     }
