@@ -32,7 +32,7 @@ class RoomsXMLRequest
 
     /**
      * @var HotelStayDetails
-     * @JMS\Type("SalmaAbdelhady\RoomsXML\Model\HotelStayDetails")
+     * @JMS\Type("SalmaAbdelhady\RoomsXML\Model\Request\HotelStayDetails")
      * @JMS\SerializedName("HotelStayDetails")
      */
     public $hotelStayDetails;
@@ -67,14 +67,14 @@ class RoomsXMLRequest
 
     /**
      * @param string $content
-     * @param string $model
      *
-     * @return object
+     * @return array
+     * @author Salma Abdelhady <salma.abdelhady@tajawal.com>
      */
-    public function getResponse(string $content, string $model): object
+    public function getResponse(string $content): array
     {
-        $serializer = SerializerBuilder::create()->build();
-        $response   = $serializer->deserialize($content, $model, 'xml');
+        $xml      = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
+        $response = json_decode(json_encode($xml), true);
 
         return $response;
     }
@@ -153,6 +153,4 @@ class RoomsXMLRequest
     {
         $this->authority = $authority;
     }
-
-
 }

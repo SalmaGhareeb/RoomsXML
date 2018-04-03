@@ -1,6 +1,6 @@
 <?php
 
-namespace SalmaAbdelhady\RoomsXML\Model;
+namespace SalmaAbdelhady\RoomsXML\Model\Request;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation\SerializedName;
@@ -8,6 +8,7 @@ use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlElement;
 use JMS\Serializer\Annotation\XmlList;
 use JMS\Serializer\Annotation\XmlRoot;
+use SalmaAbdelhady\RoomsXML\Model\Room;
 
 /**
  * Hotel stay details sent to RoomsXML on search
@@ -165,6 +166,4 @@ class HotelStayDetails
     {
         $this->roomsDetails = $roomsDetails;
     }
-
-
 }

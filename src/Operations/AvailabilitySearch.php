@@ -109,8 +109,9 @@ class AvailabilitySearch extends RoomsXMLRequest
         $this->setDetailLevel("full");
 
         $content = $this->sendRequest();
+        $response = $this->getResponse($content);
 
-        return $this->getResponse($content, 'SalmaAbdelhady\RoomsXML\Results\AvailabilitySearchResult');
+       return new AvailabilitySearchResult($response);
     }
 
     /**

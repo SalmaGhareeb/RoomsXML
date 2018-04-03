@@ -17,7 +17,7 @@ use JMS\Serializer\Annotation\Type;
  *
  * @package SalmaAbdelhady\RoomsXML
  */
-class RoomsXMLResponse extends \ArrayObject
+class RoomsXMLResponse
 {
     /**
      * @var
@@ -32,31 +32,6 @@ class RoomsXMLResponse extends \ArrayObject
      * @Type(name="string")
      */
     protected $TestMode;
-
-    /**
-     * @return array
-     */
-    public function getArrayCopy(): array
-    {
-        $resultArray = parent::getArrayCopy();
-
-        foreach ($resultArray as $key => $val) {
-            if (!is_object($val)) {
-                continue;
-            }
-
-            $object            = new self($val);
-            $resultArray[$key] = $object->getArrayCopy();
-        }
-
-        return $resultArray;
-    }
-
-
-    public function getResponse()
-    {
-        return array_values($this->getArrayCopy());
-    }
 
     /**
      * @return mixed
