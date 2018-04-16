@@ -94,7 +94,7 @@ class BookingCreate extends RoomsXMLRequest
         $this->operationData = $this;
         $content             = $this->sendRequest();
 
-        return $this->getResponse($content, 'SalmaAbdelhady\RoomsXML\Results\BookingCreateResult');
+        return $this->getResponse($content);
     }
 
 
@@ -161,6 +161,4 @@ class BookingCreate extends RoomsXMLRequest
     {
         $this->BookingId = $BookingId;
     }
-
-
 }

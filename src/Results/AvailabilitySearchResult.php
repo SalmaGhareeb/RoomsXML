@@ -28,6 +28,6 @@ class AvailabilitySearchResult extends RoomsXMLResponse
      */
     public function getHotelAvailability(): array
     {
-        return $this->response['HotelAvailability'];
+        return $this->response['HotelAvailability'] ?? [];
     }
 }

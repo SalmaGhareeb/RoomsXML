@@ -56,7 +56,7 @@ class BookingCancel extends RoomsXMLRequest
 
         $content = $this->sendRequest();
 
-        return $this->getResponse($content, 'SalmaAbdelhady\RoomsXML\Results\BookingCancelResult');
+        return $this->getResponse($content);
     }
 
     /**

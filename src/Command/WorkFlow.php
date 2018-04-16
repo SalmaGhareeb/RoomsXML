@@ -2,7 +2,7 @@
 
 namespace SalmaAbdelhady\RoomsXML\Command;
 
-use SalmaAbdelhady\RoomsXML\Model\HotelStayDetails;
+use SalmaAbdelhady\RoomsXML\Model\Request\HotelStayDetails;
 use SalmaAbdelhady\RoomsXML\Operations\AvailabilitySearch;
 use SalmaAbdelhady\RoomsXML\RoomsXMLAuthentication;
 use Symfony\Component\Console\Command\Command;
@@ -40,25 +40,24 @@ class WorkFlow extends Command
     }
 
     /**
-     * @inheritdoc
-     *
      * @param \Symfony\Component\Console\Input\InputInterface   $input
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
      * @return int|null|void
+     * @throws \SalmaAbdelhady\RoomsXML\RoomsXMLException
      * @author Salma Abdelhady <salma.abdelhady@tajawal.com>
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('<info>Starting Workflow......</info>');
-        $output->writeln('<info>Searching for availability, Hotel: Stigenberger Nile palace......</info>');
+        $output->writeln('<comment>Starting Workflow......</comment>');
+        $output->writeln('<comment>Searching for availability, Hotel: Stigenberger Nile palace......</comment>');
         $results = $this->testAvailabilitySearch();
         /** @var \SalmaAbdelhady\RoomsXML\Model\HotelAvailability $hotelAvailability */
         $hotelAvailability = $results->getHotelAvailability();
-        $hotelAvailability = reset($hotelAvailability);
-        $roomsResults      = $hotelAvailability->getResults();
-        $countResults      = count($roomsResults);
-        $output->writeln("<info>{$countResults} Room result returned</info>");
+
+        $hotelAvailability ? $output->writeln('<info>[OK] Search Availability successed</info>') :
+            $output->writeln('<error>[ERROR] Search Availability failed</error>');
+
     }
 
     /**
@@ -75,7 +74,6 @@ class WorkFlow extends Command
         $hotelStayDetails->setRoomsDetails([['adult' => 2, 'child' => 0]]);
 
         $availability = new AvailabilitySearch($this->auth);
-//        $availability->setRegionId(16294);//or
         $availability->setHotelId(86967);
         $availability->setHotelStayDetails($hotelStayDetails);
 
