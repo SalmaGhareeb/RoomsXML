@@ -1,0 +1,28 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: salmah
+ * Date: 7/28/15
+ * Time: 10:28 AM
+ */
+
+namespace SalmaAbdelhady\RoomsXML\Exception;
+
+/**
+ * Class RoomsXMLException
+ *
+ * @package SalmaAbdelhady\RoomsXML
+ */
+class RoomsXMLException extends \Exception
+{
+    /**
+     * RoomsXMLException constructor.
+     *
+     * @param null $message
+     * @param null $code
+     */
+    public function __construct($message = null, $code = null)
+    {
+        parent::__construct($message, $code);
+    }
+}

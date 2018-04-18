@@ -1,0 +1,6 @@
+/output
+composer.phar
+/vendor/
+.env
+.idea/
+.idea/vcs.xml
