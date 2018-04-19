@@ -11,9 +11,6 @@ class BookingRequest extends AbstractRequest
 {
     public $rules = [
         'QuoteId'                      => 'string',
-        'HotelBooking'                 => 'array',
-        'HotelStayDetails.ArrivalDate' => 'required|date|date_format:Y-m-d',
-        'HotelStayDetails.Nights'      => 'required|integer',
         'HotelStayDetails.Nationality' => 'required|string',
         'HotelStayDetails.Room'        => 'required|array',
         'CommitLevel'                  => 'string',
@@ -24,32 +21,31 @@ class BookingRequest extends AbstractRequest
         'QuoteId',
         'CommitLevel',
         'AgentReference',
+        'HotelStayDetails'
     ];
 
     /**
      * @var
      */
-    private $QuoteId;
+    public $QuoteId;
 
 
     /**
      * @var
      */
-    private $BookingId;
+    public $BookingId;
 
     /**
      * @var
-     * @Type(name="string")
-     * @SerializedName("AgentReference")
      */
-    private $AgentReference;
+    public $AgentReference;
+
     /**
      * @var
-     * @Type(name="string")
-     * @SerializedName("CommitLevel")
-     * @XmlElement(cdata=false)
      */
-    private $CommitLevel;
+    public $CommitLevel;
+
+    public $HotelStayDetails;
 
     /**
      * @return mixed
@@ -113,5 +109,21 @@ class BookingRequest extends AbstractRequest
     public function setCommitLevel($CommitLevel)
     {
         $this->CommitLevel = $CommitLevel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHotelStayDetails()
+    {
+        return $this->HotelStayDetails;
+    }
+
+    /**
+     * @param mixed $HotelStayDetails
+     */
+    public function setHotelStayDetails($HotelStayDetails)
+    {
+        $this->HotelStayDetails = $HotelStayDetails;
     }
 }

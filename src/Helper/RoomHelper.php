@@ -27,8 +27,8 @@ class RoomHelper
     {
         $rooms = [];
         foreach ($roomsInfo as $roomInfo) {
-            $adults = self::adults($roomInfo['AdultsCount'] ?? '');
-            $kids   = self::kids($roomInfo['kidsCount'] ?? 0, $roomInfo['kidsAges'] ?? []);
+            $adults = self::adultsForSearch($roomInfo['AdultsCount'] ?? '');
+            $kids   = self::kidsForSearch($roomInfo['kidsCount'] ?? 0, $roomInfo['kidsAges'] ?? []);
 
 
             $rooms[] = [
@@ -40,19 +40,70 @@ class RoomHelper
     }
 
     /**
+     * @param array $guests
+     *                                      Room Info example
+     *                                      [
+     *                                      0 => [
+     *                                      [
+     *                                      'type' => 'Adult'
+     *                                      'title' => 'Mr/Ms/Mrs'
+     *                                      ],
+     *                                      ],
+     *                                      1 => [
+     *                                      [
+     *                                      'type' => 'Adult'
+     *                                      'title' => 'Mr/Ms/Mrs'
+     *                                      ],
+     *                                      [
+     *                                      'type' => 'Child'
+     *                                      'title' => 'Mr/Ms/Mrs'
+     *                                      'age' => '1'
+     *                                      ],
+     *                                      ]
+     *                                      [
+     *
+     * @return array
+     * @author Salma Abdelhady <salma.abdelhady@tajawal.com>
+     */
+    public static function prepareRoomsForBooking(array $guests): array
+    {
+        $result = [];
+
+        foreach ($guests as $guestsInfo) {
+            $arr = [];
+            foreach ($guestsInfo as $guest) {
+                $type = $guest['type'];
+
+                $arr[$type][] = ['_attributes' =>
+                                     [
+                                         'title' => $guest['title'],
+                                         'age'   => $guest['age'] ?? '',
+                                         'first' => $guest['first'],
+                                         'last'  => $guest['last'],
+                                     ],
+                ];
+
+            }
+            $result[] = [
+                'Guests' => $arr,
+            ];
+
+        }
+
+        return $result;
+    }
+
+    /**
      * @param int $count
      *
      * @return array
      * @author Salma Abdelhady <salma.abdelhady@tajawal.com>
      */
-    private static function adults(int $count): array
+    private static function adultsForSearch(int $count): array
     {
         $arr = [];
         for ($i = 0; $i < $count; $i++) {
-            $arr[] = ['_attributes' =>
-                          [
-//                              'title' => '',
-                          ]];
+            $arr[] = ['_attributes' => []];
         }
 
         return ['Adult' => $arr];
@@ -65,7 +116,7 @@ class RoomHelper
      * @return array
      * @author Salma Abdelhady <salma.abdelhady@tajawal.com>
      */
-    private static function kids(int $count, array $kidsAges): array
+    private static function kidsForSearch(int $count, array $kidsAges): array
     {
         $arr = [];
         for ($i = 0; $i < $count; $i++) {

@@ -4,6 +4,7 @@ namespace SalmaAbdelhady\RoomsXML\Service;
 
 use SalmaAbdelhady\RoomsXML\Core\APIClient;
 use SalmaAbdelhady\RoomsXML\Request\AvailabilityRequest;
+use SalmaAbdelhady\RoomsXML\Request\BookingRequest;
 
 class APIService
 {
@@ -11,6 +12,7 @@ class APIService
     protected $client;
 
     const OPERATON_SEARCH = 'AvailabilitySearch';
+    const OPERATON_BOOK   = 'BookingCreate';
 
     public function __construct()
     {
@@ -36,12 +38,15 @@ class APIService
      * @param array $payload
      *
      * @return array
+     * @throws \SalmaAbdelhady\RoomsXML\Exception\RoomsXMLException
      * @author Salma Abdelhady <salma.abdelhady@tajawal.com>
      */
     public function book(array $payload): array
     {
+        $request = new BookingRequest();
+        $request->load($payload);
 
-        return [];
+        return $this->client->call(self::OPERATON_BOOK, $payload);
     }
 
     /**
